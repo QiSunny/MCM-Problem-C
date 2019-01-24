@@ -1,0 +1,810 @@
+% COPY AND PASTE THE CODE THROUGH "START YOUR DOCUMENT" FOR EACH NEW REPORT
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\documentclass[12pt]{article}
+
+% import mathy things
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\newtheoremstyle{exmp}{3pt}{3pt}{\small}{\parindent}{\bfseries}{:}{0.5em}{}
+\theoremstyle{exmp}
+\newtheorem{example}{Example}
+
+% use pictures and colors
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}
+
+% set page margins
+\usepackage[top=1in, bottom = 0.7in, left=1in, right = 1in,letterpaper]{geometry}
+
+\usepackage{hyperref}
+\usepackage{enumerate}
+% usepackage{epstopdf} 	%% uncomment to import .eps files on a Mac.
+\usepackage{mdwlist}
+\usepackage{ulem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+%\linespread{1.1}	% slightly more than single-spaced lines
+
+% = = = = = = = = [BEGIN DO_NOT_EDIT]= = = = = = = = = = = = = =
+%% Define custom commands for scientific review
+%\newcommand\reporttitle[1]{{#1}}
+%\newcommand{\reportsubtitle}[1]{{\large Application Excursion \#{#1}}\\[-0.5em]{\normalsize\textsc{Math 295: Computational Modeling}}}
+%% setup for title and author(s)
+%\makeatletter
+%\newcommand{\makeReportTitle}{% 
+%\title{\reporttitle \\ \reportsubtitle{\reportnumber}}
+%
+%  \@ifundefined{authortwo}{%
+% 	\author{\authorone}%
+%	}{%
+%	\@ifundefined{authorthree}{%
+%  		\author{\authorone \and \authortwo}%
+%		}{%
+% 		\author{\authorone \and \authortwo \and \authorthree}%
+%		}}%
+% 
+%\maketitle
+%\thispagestyle{empty}
+%}
+%\makeatother
+
+% customize page numbers -- typeset TWICE to update page reference (eliminates ??)
+\pagestyle{empty}
+\makeatletter \renewcommand{\@evenhead}{%
+%\normalsize\slshape DRAFT \today\hfil \upshape %
+\small \texttt{Team \#~93321 \hfill  {Page~\thepage} of \pageref{LastPage}}} \renewcommand{\@oddhead}{\@evenhead} \makeatother
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% = = = = = = = = [END DO_NOT_EDIT]= = = = = = = = = = = = = = 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+%		SETUP TITLE PAGE -- UPDATE {content} FOR EACH NEW ASSIGNMENT
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+% DEFINE A DESCRIPTIVE REPORT TITLE GIVEN THE TOPIC OF YOUR REPORT
+\title{}
+%\author{Team 93321}% per ICM instructions, DO NOT include your names!
+\date{}
+
+% = = = = = = = = = [END TITLE PAGE SETUP] = = = = = = = = = = = = 				
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+
+
+
+
+
+
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+%				START YOUR DOCUMENT
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+\begin{document}		% Text will appear after this command
+
+
+% make title page - DO NOT EDIT
+\makeatletter
+%\maketitle
+\thispagestyle{fancy} 
+\chead{\small \texttt{Team \#~93321 \hfill  {Page~\thepage} of \pageref{LastPage}}} 
+\makeatother
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+% - - - - - - - - - - - TABLE OF CONTENTS - - - - - - - - - -
+\tableofcontents 	% Typeset 2 or 3 times to update page numbers in table of contents
+
+% - - - - - - - - - - - REPORT STARTS HERE - - - - - - - - - -
+
+
+% - - - - - - - - - - - Introduction - - - - - - - - -
+\newpage
+\section{Introduction} 
+\label{sec:introduction} 
+\subsection{Problem Background}
+As people begin to pay more attention to environmental issues, car manufactures and governments turn their eyes to the electric vehicles (EVs), which not only provide economic income but also reduce environmental problems caused by the use of gasoline. However, as the market of EVs keeps growing, many people complained that the charging stations for these vehicles are inaccessible and hard to find. Thus, for the purpose of increasing the charging efficiency and promoting EVs, in this paper we will:\begin{itemize}
+\item Build the current and growing network of Tesla charging stations (CSs) in U.S., and propose an ideal optimal number and distribution of charging stations in U.S..
+\item Predict the demand curve of EVs and its proportion in total vehicles overtime.
+\item Set up final and evolving proposal for the construction of CS network in Uruguay.
+\item Suggest a brief classification system of different growing plan under different country conditions to leaders of countries.
+\item Evaluate the stability of our built plan under different impacts.
+\end{itemize}
+\subsection{Previous Research}
+There are various researches on the topic of optimal distribution of CSs in cities and countries. Most of them use the Genetic Algorithm (GA) or GA related algorithm, such as Abhishek Awasthi's research in 2017 [1], which focuses on the maximal energy use, and Helge Spieker's paper on a successive evolution of CS placement in 2015 [4]. Other researches focus on the demand of EVs overtime, such as S. Beggs' research which uses the Logistic Model to simulate the demand curve in 1981 [2]. The major work that we refer to is Ruifeng Shi and Kwang Y. Lee's research that uses multi-objective optimization and SPEA-II, an optimization algorithm [3].
+\subsection{Our work}
+In this solution, we first build the model of current Tesla CS network, and evaluate its decision of types and placement of upcoming CSs. Then, we build a model for the total number and distribution of CSs in U.S.. As we refer to Shi and Lee's work, three major factors that we consider are the investment for construction of CS, customer's cost and charger poles' utility. However, we adjust the objective function in accordance with specific situations. Afterwards, we make the plan of CSs in Uruguay. We decide the optimal final number, distribution and placement of CSs as well as an evolving plan of both CSs and EVs on road overtime. The next task we do is that we try to classify different types of growing models under different key factors, such as population distribution, geographic and economic condition. Finally, we analyze the stability of our model and consider about the impact of other future transportations on the increasing use of EVs. % labels allow you to cross-reference a section later in the document, without having to remember its number
+%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Delete existing text when writing your own report.
+
+
+ 
+
+% - - - - - - - - - - - END Introduction - - - - - - - - - - -
+
+
+% - - - - - - - - - - - Model Design - - - - - - - - -
+\section{Assumptions} 
+\label{sec:assumptions} 
+\begin{itemize}
+\item The charging demands in each candidate location are proportional to the total number of EVs in that area.
+%\item The distribution of vehicles in urban, suburban and rural areas is similar in the same country.
+\item The ratio of the total population to total vehicles in each country remains the same over the time.
+\item The proportion of population in urban, suburban and rural areas is same with that of vehicles in each area.
+\item The total number of population remains the same during the whole process of switching to all-electric.
+\item EVs are available according to the production line provided by Tesla as long as delivery begins in one country.
+\end{itemize}
+\vspace{-.5em}
+\begin{table}
+\centering
+\begin{tabular}{c|l}
+\toprule \\
+Nomenclature & Meaning\\\hline
+$D_0$& the basic demand of destination charging station\\ 
+$D_d,D_s$ & the demand of destination charging stations or supercharging stations.\\
+$\alpha_d$, $\alpha_s$ & scale constants for DCSs or SCSs that depends on the time to achieve 100\% EVs\\
+$x_i$ & the $i$th year from 2017 after the first delivery of Tesla Model 3\\
+$x_0$ & the number of years from 2017 when 50\% of total vehicles are EVs\\
+$D_{s,f}$ & the final demand when everyone has switched to EV\\
+$b_d$, $b_s$ & the coverage of DCS or SCS\\
+$A$ & the set of total area under calculation\\
+$N$ & the total number of destination charging stations\\
+$S$ & the total number of supercharging stations\\
+$N_a$& optimal output set of destination charging stations in area $a$, $a \in A$\\
+$S_a$& optimal output set of supercharging stations in area $a$,  $a \in A$\\
+$p_a$ & the population density in area $a$, $a \in A$\\
+$\beta$ & the proportion of cars to population.\\
+$f_{1,d},f_{1,s}$& the investment cost of construction for DCSs or SCSs\\
+$f_{2,d},f_{2,s}$ & the customer's cost to DCSs or SCSs\\
+$f_{3,d},f_{3,s}$ & the charging poles utility of DCSs or SCSs\\
+$J_{1,d}$,$J_{1,s}$& the location set of potential new SCS or DCS\\
+$J_{2,d}$,$J_{2,s}$& the location set of current existed DCS or SCS\\
+$C_{i,j}$& 0/1 decision variable to construct or operate a charging station\\
+$n_j$ &the number of poles in $j$th charging station,\\
+$I_d$, $I_s$& investment cost of a new pole in DCS or SCS\\
+$K_d$, $K_s$& investment cost of a new constructed DCS or SCS\\
+$O_d$, $O_s$& operation cost of a charging pole in DSC or SCS\\
+$R_d$, $R_s$& reinforcement cost of an old charging pole in DSC or SCS station\\
+$T$& the planning horizon\\
+$V$& the predicted EV set in the study\\
+$c_t$& the per unit driving cost on the way to supercharging station\\
+$d(v,j)$& the distance of EV $v$ to supercharging station $j$\\
+$\phi(v,j,t)$& the status of $v$ charging at supercharging station $j$ at time $t$\\
+$F_c(v,t)$& the charging cost of EV $v$ in time $t$\\
+$\rho$ & the unit charging price\\
+$L$& the average mileage between two charging\\
+$\mathcal{X}(i,j,t)$& the working status of charging pole $i$ of supercharging station $j$ at time $t$\\
+$S$ & the total number of supercharging stations\\
+$N_u,N_s,N_r$ & the demand of destination charging stations in urban, suburban and rural areas\\
+$S_u,S_s,S_r$ & the demand of supercharging stations in urban, suburban and rural areas\\
+$d_{ij}$ & the distance between two CSs\\
+$Q_1$,$Q_2$ & the location set of potential new DCS or SCS in Uruguay,\\
+$f_{1,scity}$, $f_{1,srural}$ & the cost of DCS or SCSs in the second stage of evolvement in the case of Uruguay\\
+$f_2, f_{2,rural}$ &the custom's cost to charging stations in cities or in rural areas \\
+$f_{1,city}$ & the cost of SCSs or DCSs in the second stage of evolvement in the case of Uruguay.\\
+$f_{3,city}, f_{3,rural}$ & the charging poles utility in cities or in rural areas\\
+$P_{EV}$ & the proportion of EVs in total vehicles\\
+$a_{ev}$ & a scale factor that depends on the time to achieve 100\% EVs\\
+\bottomrule
+\end{tabular}
+\end{table}
+% labels allow you to cross-reference a section later in the document, without having to remember its number
+%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Delete existing text when writing your own report.
+
+ 
+
+% - - - - - - - - - - - END Model Design - - - - - - - - - - -
+
+
+
+% - - - - - - - - - - - Model Solution - - - - - - - - -
+\section{Tesla Charging Stations in the US} 
+\label{sec:telsachargingstaions} 
+In this section, we build a network of all the existing and coming Tesla charging stations in US, and we analyze its trend by comparing to the predicted production line of Tesla Model 3 and proportion of electric vehicles (EV) in total vehicles. First, we organize the data from Tesla website, and make a table on the number of charging stations in each state. Then, we take California as a sample state to analyze the current distribution of charging stations in the US and further discuss the final distribution of charging stations among different areas. Finally, we calculate the number of charging stations needed when everyone in US switches to EV.
+\subsection{Two types of Charging Stations}
+Over the past years, Tesla built two types of charging stations in the US. \textbf{Destination Charging Station}(DCS) and \textbf{Supercharging Stations}(SCS). In DCS people charge the car with lower power, usually up to 20kw, and it often takes hours and even overnight to fully charge an EV. On the other hand, in SCS, high power charger with up to 150 kw charges the car for about 170 miles in only 30 minutes.
+\subsubsection{Destination Charging Station}
+DCS serves as a supplement of at-home charging in most of the times. Considering that most Tesla owners have a personal garage or a driveway with power, they can charge their EVs at home when the car is not in use. Moreover, since it takes a long time to charge an EV from empty to full, it is unlikely that people can use DCS when passing by. In this sense, the DCS is mostly needed for those who park their EVs overnight but cannot charge at home or those who park their EVs outside overnight. Therefore, most of the existing DCS locate in hotels and parking lots.
+\subsubsection{Supercharging Station}
+Compare to DCS, SCS provides a more efficient charging service. Just like how people are filling their tank, it takes only up to 30 minutes to charge an EV. Therefore, supercharging stations are built for the need of quick charging, especially when people are on the way, and the mode of using supercharger is very much like that of an oil pump. 
+\subsection{Network Based on Current and Upcoming Charging Stations in US}
+Based on the list of DCS and SCS given on the Tesla website, both current and upcoming, we study the distribution of different kinds of CSs over different states and we calculate the average number of total stations in a state. Also, we compare the density of the chargers (number of EVs per charger) in each state and calculate the average. The complete table of data is exhibited in appendix A. The number of EVs is based on the total number of vehicles in the US in 2016 and the percentage of EVs in all vehicles is taken as 1\% [7]. In the networks we explore, we focus on the states that have more charging stations and lower density than average (Figure 1,2).
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=1\linewidth]{STATES.png}
+		\caption{States with Number of Charging Stations Above Average}
+		\label{Fig:1}
+	\end{center}
+	\vspace{-0.5em}
+\end{figure}
+
+\subsubsection{Distribution of Charging Stations Overall}
+\begin{itemize}
+\item \textbf{Destination charging station $\gg$ supercharging stations}
+
+As shown in Figure 1, most charging stations in a state are DCSs. Considering the growth of EV market currently, a basic charging station network needs to be built before the vehicles are delivered, and the increase of demand for DCS slows down as the market grows. we build the demand of DCS over time as \begin{align}
+D_d=D_0+\alpha_d\log (x_i) \end{align} where 
+
+$D_0$ refers to the basic demand of DCS, 
+
+$\alpha_d$ are scale constants that depends on the time to achieve 100\% EVs and the final demand, and 
+
+$x_i=1,2,3,...$ refers to the $i$th year from 2017 after the first delivery of Tesla Model 3.
+
+On the other hand, the demand of SCS over time is modeled similar to the production line provided by Tesla and the demand curve of EVs[8] using the Logistic model as \begin{align}D_s=\frac{D_{s,f}}{1+e^{-\alpha_s(x_i-x_0)}}\end{align} where 
+
+$D_{s,f}$ is the final demand when everyone has switched to EV, 
+
+$\alpha_s$ is the scale factor that depends on the time to achieve 100\% EVs, and
+
+$x_0$ is the number of years from 2017 when 50\% of total vehicles are EVs.
+
+Thus, fitting the data into the model, since dominantly the charging stations are destination ones, and the upcoming SCS still occupy a low proportion, it confirms that the state of the current EV market is still at the begging stage.
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Density.png}
+		\caption{States with density Average}
+		\label{Fig:2}
+	\end{center}
+	\vspace{-0.5em}
+\end{figure}
+
+\item \textbf{Overall the supply of charging stations currently meet the basic demand.}
+
+Among all the low-density states, most states with large number of EVs also have many charging stations, such as California. Similarly, states with few EVs also have few charging stations. Furthermore, in comparison to the ratio of 2000 vehicles to 1 gas stations[9], the density is relatively low for electricity charging stations. Hence, we draw the conclusion that not only are the charging stations proportional to the number of EVs, but the current number of charging stations meets the basic requirement.
+
+\item \textbf{Most charging stations are at coastlines}
+
+According to the US census, most urban areas appear in the states with more charging stations[5][6]. Similarly, 80\% of total populations are in urbanized areas (here urbanized areas means urban and suburban areas)[10]. Hence, we draw the conclusion from proper generalization that since the distribution of charging stations should be proportional to the number of EVs, and since the number of EVs are proportional to the distribution of population, it is reasonable to place charging stations proportional to the distribution of population in different areas.
+
+\end{itemize}
+\subsubsection{California as a Typical Sample State}
+From the general view of the network, California is a state with high population, high vehicle volume and a considerable amount of charging stations. Hence, it can be viewed as a typical sample of a US state that provides us with a large set of data. In Figure 3, we plot the number of charging stations in each cities in CA and the proportion of different kinds of charging stations. For a better visualization, we only exhibit the cities that has more than 3 charging stations.
+
+This network reinforces our conclusion about the number and distribution of charging stations overtime:
+\begin{itemize}
+\item The number of population is proportional to the number of vehicles.
+\item The number of charging stations is proportional to the number of EVs.
+\item Destination charging station dominates the charing stations.
+\item The EV market is still at the beginning stage.
+\end{itemize}
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{CA.png}
+		\caption{Charging Stations in Cities of California}
+		\label{Fig:3}
+	\end{center}
+	\vspace{-0.5em}
+\end{figure}
+\subsection{Future Development of Tesla Charging Stations}
+We use the modeled investment in construction of the two types of charging stations, the modeled demand of the charging stations, and the modeled utility to evaluate the proposed plan of upcoming charging stations and give a proposal for the total number of charging stations needed when everyone switches to EV. As either type of charging stations is not the substitution of the other, we will discuss about the plan for the two types separately.
+\subsubsection{Evaluation of Current Plan}
+Given the data on Tesla website, there will be a few SCS in the next couple of years, whereas no new DCS are known to be built. According to (1), the demand of DCS will slow down once the proportion of EVs achieves 50\% of total vehicles. Since the proportion of EVs is still quite low and the market is still at the beginning stage, the demand of DCS increases rapidly each year. Thus, although there are many DCS currently, more DCS need to be built.
+
+However, the plan for SCS is quite reasonable in current stage. The demand for SCS is still very low and also increases slowly. Therefore, the relatively small amount of both currently and upcoming SCS meet both the demand of present and recent years.
+\subsection{Total Number of Charging Stations Needed}
+\subsubsection{Maximum and Minimum of Total Number of CSs}
+%Since the technology of improving fuel efficiency is relatively mature, we assume when it achieves 100\% EVs, the need for destination charging stations is proportional to that for gas stations nowadays. Thus, we model the total number of destination charing station needed as
+%\begin{align}
+%N=\gamma(1-\beta)G(1+\alpha)^n
+%\end{align} where
+
+%$N$ is the total number of destination charging stations,
+
+%$\gamma$ is the ratio factor of the fuel efficiency nowadays to electric efficiency,
+
+%$\beta$ is the proportion of total population that have at-home charging,
+
+%$G$ is the total number of gas stations in the US,
+
+%$\alpha$ is the increase rate of total population every year, and
+
+%$n$ is the year needed to achieve 100\% EVs.
+First of all, we should guarantee that all of the EV drivers can access to charging stations. That is to say, we need to establish a minimum amount of charging stations in different sample areas to ensure the coverage of the charging station. Furthermore, we have to consider about how many cars a charging station can allow to get them charged simultaneously. Thus, we can use the amount of cars in different sample areas to get another amount of charging stations.
+$$\max N=\max(\frac{a}{b_d},a\times \frac{p_a\cdot \beta}{m_1})\hspace{5mm} \text{and} \hspace{5mm}\max S=\max(\frac{a}{b_s},a\times \frac{p_a\cdot \beta}{m_2})$$
+$$\min N=\min(\frac{a}{b_d},a\times \frac{p_a\cdot \beta}{m_1})\hspace{5mm} \text{and} \hspace{5mm}\min S=\min(\frac{a}{b_s},a\times \frac{p_a\cdot \beta}{m_2})$$where\\
+$a$ is the area of the sample,\\
+$m_d$,$m_s$ are the average number of cars of DCS or SCS\\
+$b_d$, $b_s$ are the coverage of DCS or SCS\\
+$p_a$ is the population density of the sample,\\
+$\beta$ is the proportion of cars to population
+
+\subsubsection{Optimal Total Number of CSs}
+As for the optimal number and distribution of charging stations in a given area, we refer to the multi-task optimization model with SPEA-II algorithm[3]. We are following the methodology of this paper, since the major part of the problem that the paper is trying to solve and its multi-objective optimization methods are quite in common with the supercharging station distribution that we are dealing with right now. Thus, we are borrowing the objective functions from the paper but cutting off the part of reinforcement cost as said in the assumption. Later when we further develop plans, we are going to make some improvement based on this model.\\ 
+The objective functions for DCS are given as following: 
+\begin{itemize}
+\item \textbf{Investment in Construction \& Operation}: while building charging stations for people's convenience, we also take the investment in construction and operation into consideration.
+\begin{align}
+\min f_{1,d}&=\sum_{j\in J_{1,d}}C_{1,j}\{K_{d}(n_{j})+O_{d}n_j)\}+\sum_{j\in J_{2,d}}(O_{d}n_{j}+C_{2,j}R_dn_{j})\\
+\min f_{1,s}&=\sum_{j\in J_{1,s}}C_{1,j}\{K_{s}(n_{j})+O_{s}(n_{j})\}+\sum_{j\in J_{2,s}}(O_{s}n_j+C_{2,j}R_sn_j)
+\end{align}
+\item\textbf{Customers' Cost:}
+In our consideration, customer's cost involves the charging cost and the driving cost.
+\begin{multline}
+\min f_{2,d}=\sum_{t\in T}\sum_{v\in V}F_c(v,t)+c_t\times \sum_{t\in T}\sum_{v\in V}\sum_{j\in J_{1,d}}C_{1,j}d(v,j)\phi(v,j,t)\\
++ c_t\times \sum_{t\in T}\sum_{v\in V}\sum_{j\in J_{2,d}}d(v,j)\phi(v,j,t)
+\end{multline}
+\begin{multline}
+\min f_{2,s}=\sum_{t\in T}\sum_{v\in V}F_c'(v,t)+c_t'\times \sum_{t\in T}\sum_{v\in V}\sum_{j\in J_{1,s}}C_{1,j}d(v,j)\phi(v,j,t)\\
++ c_t'\times \sum_{t\in T}\sum_{v\in V}\sum_{j\in J_{2,s}}d(v,j)\phi(v,j,t)
+\end{multline}
+\item \textbf{Charging Poles' Utility:}
+The total utility of charing poles are defined in a similar way as the effectiveness and utility ratio:
+\begin{align}
+\max f_{3,d}&=\frac{\sum_{t\in T}\{\sum_{j\in J_{1,d}}\sum_{i\in n_{j}}C_{1,j}\mathcal{X}(i,j,t)+\sum_{j\in J_{2,d}}\sum_{i\in n_{j}}\mathcal{X}(i,j,t)\}}{\sum_{t\in T}\{\sum_{j\in J_{1,d}}C_{i,j}n_{j}+\sum_{j\in J_{2,d}}n_{j}\}}\\
+\max f_{3,d}&=\frac{\sum_{t\in T}\{\sum_{j\in J_{1,d}}\sum_{i\in n_{j_{1}}}C_{1,j}\mathcal{X}(i,j,t)+\sum_{j\in J_{2,d}}\sum_{i\in n_{j}}\mathcal{X}(i,j,t)\}}{\sum_{t\in T}\{\sum_{j\in J_{1,d}}C_{i,j_{1}}n_{j_{1}}+\sum_{j_{2}\in J_{2,d}}n_{j_{2}}\}}
+\end{align}
+\end{itemize}
+where\\
+$f_{1,d}$, $f_{1,s}$: DCS's cost or SCS's cost,\\
+$f_{2,d}$, $f_{2,s}$: customers' cost in DSC or in SCS,\\
+$f_{3,d}$ ,$f_{3,s}$: charging poles utility in DSC or in SCS,\\
+$J_{1,d}$,$J_{1,s}$: the location set of potential new DSC or SCS,\\
+$J_{2,d}$,$J_{2,s}$: the location set of current existing DSC or SCS,\\
+$C_{1,j_{1}}$: 0/1 decision variable to construct a charging station,\\
+$n_{j}$: the number of poles in $j$th charging station,\\
+$I_{d}$, $I_{s}$: investment cost of a new DCS or SCS,\\
+$O_d$, $O_s$: operation cost of a pole of DCS ot SCS,\\
+$T$: the planning horizon,\\
+$V$: the predicted EV set in the study,\\
+$c_t$: the per unit mile driving cost on the way to DCS or SCS,\\
+$d(v,j)$: the distance of EV $v$ to charging station $j$,\\
+$\phi(v,j,t)$: the status of $v$ charging at supercharging station $j$ at time $t$ with the constraint 
+\begin{align}\sum_{j\in J_1}C_{1,j}\phi(v,j,t)+\sum_{j\in J_2}\phi(v,j,t)=1, \quad \phi(v,j,t)\in\{0,1\},
+\end{align}\\
+$F_c(v,t)$,$F_c'(v,t)$: the charging cost of EV $v$ in time $t$ and is given by $$F_c(v,t)=\rho L\hspace{5mm}\text{or}\hspace{5mm}F_c(v,t)=\rho' L$$ where $\rho$ or $\rho'$ is the unit charging price of DCS or SCS and $L$ is the average mileage between two charging stations, and
+$\mathcal{X}(i,j,t)\in\{0,1\}$: the working status of charging pole $i$ of supercharging station $j$ at time $t$.
+\subsubsection{Constraints}
+\begin{itemize}
+\item \textbf{Number of charging stations}:In 3.4.1, we have established the upper bound and lower bound for the number of charging stations in the network. For an area $a\in A$ where $A$ is the total area under calculation in the US, denote the output set $N_a$ and $S_a$
+\begin{align}
+\min N&\leq N_a\leq \max N\\
+\min S&\leq S_a\leq \max S
+\end{align}
+\item \textbf{Number of charging poles:}
+For the purpose of minimizing cost and maximizing utility, there should be a limit on the number of poles in every station: \begin{align*}
+n_{min} \le n_j \le n_{max}
+\end{align*} where
+
+$n_{min},n_{max}$ are the minimum and maximum number of charging poles in a CS.
+
+\item \textbf{Distance between two CSs:}
+We consider that there should be a minimal distance between two charging stations so that there will not be a high resource waste. Also, consider the range of EVs, there should also be a maximize distance so the coverage of all CSs are guaranteed: \begin{align}
+d_{\min }\le d_{ij} \le d_{max}
+\end{align} where
+
+$d_{ij}$ is the distance between two CSs, and
+
+$d_{min},d_{max}$ refer to the minimal and maximal distance between two CSs.
+
+\end{itemize}
+With the objective functions and constraints, we can use SPEA-II to get the total number of DCS and SCS by\begin{align}
+N&=\sum_{a\in A}N_{a}\\
+S&=\sum_{a\in A}S_{a}
+\end{align} where $N$ is the total number of DSC and $S$ is the total number of SCS.
+\subsection{Overall Distribution of Future Charging Stations}
+The distribution in different locales has already been discussed, and we reinforce here. Since the demand is proportional to the number of EVs, we propose that the distribution of charging stations in urban, suburban and rural areas are $p_u,p_s$ and $p_r$, where $p_u,p_s$ and $p_r$ are the proportion of population in these areas with $p_u+p_s+p_r=1$.
+
+Moreover, consider that more people reported living in suburban and rural area, whereas more people stay in urban and suburban area during daytime[12], we uses the Pareto Principle to propose that 
+\begin{align}
+N_u&=0.2N\\
+S_u&=\frac{p_u}{p_u+p_s}\cdot 0.8S\\
+N_s&=\frac{p_s}{p_r+p_s}\cdot 0.8N\\
+S_s&=\frac{p_s}{p_u+p_s}\cdot 0.8S\\
+N_r&=\frac{p_r}{p_r+p_s}\cdot 0.8N\\
+S_r&=0.2S
+\end{align} where
+
+$N_u,N_s,N_r$ refers to the demand of destination charging stations in urban, suburban and rural areas, and
+
+$S_u,S_s,S_r$ refers to the demand of supercharging stations in urban, suburban and rural areas.
+% labels allow you to cross-reference a section later in the document, without having to remember its number
+%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Delete existing text when writing your own report.
+\section{Charging Station Model for Uruguay}
+In this section, we analyze the urbanization and population in Uruguay. Uruguay is a relatively small country with low population density and moderate economic condition. The urbanization rate in Uruguay is higher than 95\%, so we focus our thought on the construction in urban areas. Based on these knowledge, we make the plan for the final and evolving optimal number, placement and distribution of charging stations in Uruguay.
+\subsection{Optimal Plan for Final Charging Station Placement}
+Since the number of gas station in Uruguay cannot provide a good reference (only 80 in the whole country), this time we take both destination charging station (DCS) and supercharging station (SCS) into consideration. Thus, we still refer to the multi-task optimization but this time with a SPEA-II algorithm. The key factors under our consideration are population density and population distribution. Since most population in Uruguay concentrate in a few major cities, and the population density (20 ppl/km$^2$)[11] is quite low, we make an optimal balance between the coverage of the network, i.e. the distance from an EV to a CS, and the utility rate to decide the optimal number and placement of the CSs. As for the distribution, we consider that Uruguay is highly urbanized, so the CSs are also mostly built in urban areas proportional to the population distribution.
+\subsubsection{Optimization Objectives}
+As we are considering that the model is built to calculate the final optimal number, placement and distribution of DCS and SCS, our optimization objectives including minimizing customers' cost and maximizing the charging poles' utility. Because of the large difference of population distribution between cities and rural areas, we decide to split the case of \textbf{cities} and the case of \textbf{rural areas} to discuss about the optimal situation. \par
+In either case, the determinants are the customers' and the charging pole's utility. Hence, both two cases will use the two following objective functions to get the optimal plan.
+\begin{itemize}
+\item \textbf{Customers' Cost:}
+Here the customers' cost only involves the charging cost from existed CSs and the driving cost, and the function is very similar to the one used to estimate the number of CSs in the US:
+ \begin{align}
+ \min f_{2,d}=\sum_{t\in T}\sum_{v\in V}F_c(v,t)+c_t\times \sum_{t\in T}\sum_{v\in V}\sum_{j\in J_{1,d}}C_{1,j}d(v,j)\phi(v,j,t)\\
+\min f_{2,s}=\sum_{t\in T}\sum_{v\in V}F_c'(v,t)+c_t\times \sum_{t\in T}\sum_{v\in V}\sum_{j\in J_{1,s}}C_{1,j}d(v,j)\phi(v,j,t)
+\end{align} 
+
+\item \textbf{Charging Poles' Utility:}
+The total utility of charing poles are defined in a similar way as the effectiveness and utility ratio: \begin{align}
+\max f_{3,s}=\frac{\sum_{t\in T}\sum_{j\in J_{1,d}}\sum_{i\in n_{j}}C_{1,j}\mathcal{X}(i,j,t)}{\sum_{t\in T}\sum_{j\in J_{1,d}}C_{i,j}n_{j}}\\
+\max f_{3,d}=\frac{\sum_{t\in T}\sum_{j\in J_{1,s}}\sum_{i\in n_{j}}C_{1,j}\mathcal{X}(i,j,t)}{\sum_{t\in T}\sum_{j\in J_{1,s}}C_{1,j}n_{j}}
+\end{align}.
+
+\end{itemize}
+\subsubsection{Constraints}
+The constraints in this case are pretty similar as we have used in the case of US.
+\begin{itemize}
+\item \textbf{Number of charging stations}
+\begin{align}
+\min N&\leq N_a\leq \max N\\
+\min S&\leq S_a\leq \max S
+\end{align}
+\item \textbf{Number of charging poles:}
+\begin{align}
+n_{min} \le n_j \le n_{max}
+\end{align}
+\item \textbf{Distance between two CSs:}
+ \begin{align}
+d_{\min }\le d_{ij} \le d_{max}
+\end{align} 
+\end{itemize}
+
+The total number needed and its corresponding placement in Uruguay are\begin{align}
+S=\sum_{a\in A}S_a\\
+N=\sum_{a\in A}N_a
+\end{align} Moreover, considering that the urbanization ratio in Uruguay is more than 95\% and that more than 95\% population live in urban area, we propose the overall distribution of both DCSs and SCSs proportional to the population in urban and rural areas.
+
+\subsection{Evolving Plan in Uruguay}
+As we have learned, 26 percent of energy in Uruguay is put into transportation while 62 percent of the total energy in use comes from imported fossil fuels$^{[11]}$. By taking this fact into consideration, we can claim that the application of electric vehicle in this country will reduce the emission of greenhouse gas and preserve the government's cost from importing fossil fuels. On this account, we assume that the country has great motivation in promoting the transition to all-electric. \par
+Based on the pattern of population distribution in Uruguay, we shall propose the government to build CSs in the cities at first, and make decisions about CSs in other rural areas later. Here we make an assumption that people living in urban area do not usually go to rural area. Thus, the distinct plans for cities and rural areas do not influence the accessibility to charging stations for EV drivers living in cities or rural areas. In addition to the key factors considered in the last part, we also consider the cost of government for CSs throughout the evolving plan.\par
+We consider the evolving plan of CSs in Uruguay to be a multi-stage and multi-task incremental optimization. That is to say, the plan has multiple stages. In each stage there is a specific optimization objective, and the result in this stage is taken to be the base of the next stage, while in each stage we manage to minimize the country investment. The plan we propose consists of two stages. In the first stage, when the proportion of EVs is less than 50\%, the SCS network in cities is still building up to meet customers' requirement. Thus, we decide the optimization objective to be the maximum coverage, or minimize customers' cost. In the meanwhile, the DCS network should be built and it should remain the same through the process of evolvement. In the second stage, when the proportion of EVs is more than 50\%, the basic network in cities has been built, and the optimization objective is to prevent resource waste, or to maximize the charging poles' utility. In addition to that, we will include the construction of DSC in rural areas in the second stage to ensure that people from rural areas can access to charging stations. The time to enter into each stage will be discussed in the next subsection. In each stage, we use SPEA-II to give the optimal output, and the final goal is the optimal number and placement $N,S$ given in section 4.1. While getting the optimal plan for the evolvement, we will propose the country's investment in chargers in each stage to be $f_{1,d}$ and $f_{1,s}$ dollars .
+
+\subsubsection{Stage 1: CS Coverage Maximization}
+At the beginning stage of EV market, a basic CS network in the major cities is necessary for customers to access to. Thus, the major objective at this period is to ensure the coverage of the network. In other words, not only should every customer be able to find a CS, but also it should not cost too much on the way to the CS. Considering that Uruguay is highly urbanized, we propose that in stage 1 the network is all city-based and regardless of the number of EVs until the coverage meets the basic requirement in cities. Hence, the objective functions are given as the following:
+ \begin{align}
+\min f_{1,d}&=\sum_{q\in Q_1} C_{1,q} (K_d+ n_{q} \cdot I_{d}+ O_{d} \cdot n_{q})\\
+\min f_{1,s}&=\sum_{q\in Q_2} C_{1,q} (K_s+ n_{q} \cdot I_{s}+ O_s\cdot n_{q})\\
+\min f_{2} &=c_t \times \sum_{t\in T} \sum_{v\in V}\sum_{q\in Q_1} C_{1,q} d(v,q,t)
++c_t' \times \sum_{t\in T} \sum_{v\in V} \sum_{q\in Q
+_2}C_{1,q} d(v,q,t)\phi(v,q,t)
+\end{align}where\\
+$Q_1$,$Q_2$: the location set of potential new DCS or SCS in Uruguay,\\
+$n_q$ : the number of poles in a charging station $q$,\\
+
+Here we also need to consider about the same three constraints used above.
+
+\subsubsection{Stage 2: Resource Waste Minimization}
+In the second stage, we take the number of EVs on road and the demand into consideration to avoid waste, meanwhile building up the network in rural areas. Here we will not consider about the reinforce cost arises from DSC in cities as we have already determined the number of DSC in these areas in the first stage, which makes the reinforce cost as sunk cost thereafter. The objective functions in this stage are given as the following:\\
+For charging stations in cities
+\begin{align}
+\min f_{1,scity} &=\sum_{q\in Q_2} C_{1,q} (K_s+ n_{q}I_{s}+ O_s \cdot n_{q})+\sum_{j\in J_{2,s}} (C_{2,j} R\cdot n_{j}+O_s\cdot n_j)\\
+\max f_{3, city}&=\frac{\sum_{t\in T}\{\sum_{q\in Q_1}\sum_{i\in n_{q}}C_{1,q}\mathcal{X}(i,q,t)+\sum_{q\in Q_2}\sum_{i\in n_{q}}\mathcal{X}(i,q,t)\}}{\sum_{t\in T}\{\sum_{q\in Q_1}C_{i,q}n_{q}+\sum_{q_2\in Q_2}n_{q}\}}
+\end{align}
+For charging stations in rural areas
+\begin{align}
+\min f_{1,drural} &=\sum_{q\in Q_1} C_{1,q}(K_d+ n_{q} \cdot I_{d}+ O_{d} \cdot n_{q})\\
+\min f_{1,srural} &=\sum_{q\in Q_2} C_{1,q}(K_s+ n_{q} \cdot I_{s}+ O_s \cdot n_{q})\\
+\min f_{2,rural} &=c_t \times \sum_{t\in T} \sum_{v\in V}\sum_{q\in Q_1} C_{1,q}d(v,q,t)
++c_t \times \sum_{t\in T} \sum_{v\in V} \sum_{q\in Q
+_2}C_{1,q} d(v,q,t)\phi(v,q,t)\\
+\max f_{3, rural}&=\frac{\sum_{t\in T}\{\sum_{q\in Q_1}\sum_{i\in n_{q}}C_{1,q}\mathcal{X}(i,q,t)+\sum_{q\in Q_2}\sum_{i\in n_{q}}\mathcal{X}(i,q,t)\}}{\sum_{t\in T}\{\sum_{q\in Q_1}C_{i,q}n_{q}+\sum_{q\in Q_2}n_{q}\}}
+\end{align}
+The constraints are the three that we have used above.
+\subsection{Time line for EV Evolution}
+Considering the current economic condition in Uruguay and that its electricity mostly comes from renewable resources, we assume that most population can afford an EV so that as the EVs become more available in the market, the demand of EVs is higher than the supply. As the number of production per week achieves an upper limit, the demand increases with an increasing speed. Moreover, we propose that the government will announce the ban for fossil fueled vehicles when the proportion reaches 50\%. Hence, after 50\%, although the price of EV may increase, the demand of EVs still increase whereas the demand of fossil vehicles decreases rapidly, which results in the proportion increasing rapidly. The increase in the demand gradually slows down as most people have owned EVs. Finally, the demand keeps at a relatively constant value as it reaches 100\% on road. Thus, the increase of proportion of EVs in total vehicles over time imitates the production line. Thus, As a result, the curve of EV proportion on road is given by \begin{align}P_{EV}=\frac{1}{1+e^{-a_{ev}(x_i-x_0)}}\end{align}where
+
+$P_{EV}$ is the proportion of EVs in total vehicles,
+
+$a_{ev}$ is a scale factor that depends on the time to achieve 100\% EVs.
+
+A simulation result is shown in Figure 4.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{c|c}
+\toprule
+Parameter &Values\\\hline
+$a_{ev}$ &0.1917\\
+$x_0$ & 23\\
+\bottomrule
+\end{tabular}
+\caption{Parameters for the Simulation}
+\end{table}
+\begin{figure}
+	\centering
+	\begin{tabular}{ccc}
+		\includegraphics[width=0.5\linewidth]{S1.png}  &  
+		\includegraphics[width=0.5\linewidth]{S2.png} \\ 
+		(a) & (b)\\
+	\end{tabular}
+	\caption{Simulation Results of Proportion of EVs Overtime. }
+	\label{Fig:4}
+	\vspace{-0.5em}
+\end{figure}
+
+\section{Classification of Growing Models}
+In this section, we classify different modes of growing plan regarding different key factors. As discussed in the last section, economic condition, population density distribution and geographic of a country are main factors that distinguish different models.
+\subsection{Classification by Geography}
+Geographic can impose great influence on the growing model of CSs in a country. CSs are built for the usage of EVs. Thus, the resource of electricity and fossil fuels, which is decided by the geography of a country, determines the prices of these two kinds of energy. Hence, the citizens' acceptance of a new-energy vehicle will be impacted. Furthermore, from the perspective of economic efficiency, land area influence the decision of whether the CSs should be built prior or after the use of EVs.
+\subsubsection{Land Area as Key Factor}
+The land area impact the order of building CSs and introducing EVs, since a prior built CS network may cause resource waste if some CSs are rarely used, whereas lack of CSs may cause inconvenience in driving. We divide country's land areas into large and small with the criterion 0.2 million km$^2$. In large countries, either the number of CSs or the coverage of a single CS needs to increase by building bigger station, in order to meet the total coverage requirement. However, either choice will encourage the government's investment. Thus, we propose that under such situation, the government build CSs in response to the demand of EVs. On the other hand, in relatively small countries, we decide that the order depends on population density distribution, which will be discussed in the following subsection. 
+\subsubsection{Geographical features as Key Factor}
+The geographical features of a country decide the resource type available in the country to a great extent, and the differences in prices will affect the general acceptance to a new transportation. In countries where the difference between prices of fossil fuel and electricity is small, or where electricity is much cheaper than gasoline, few difficulties will be caused due to this factor. However, in countries where electricity is more expensive than gasoline (which, most countries are), it takes time for the public to accept this expensive though more environmental-friendly transportation. After the initial increase of proportion of EVs, due to the price, the increase will gradually slow down. In this situation, government policy plays an important role. We propose that the government should announce the ban when the rate of increase drop near 0 to encourage the transition.
+\subsection{Classification by Population}
+Under this classification, the two important key factors are population density and urbanization of a country. Under different circumstance, the distribution of DCSs and SCSs, as well as the sequence of building CSs and delivering EVs will vary.
+\subsubsection{Population Density as a Key Factor}
+In a country with low population density, we propose that the country should first develop the EV market, and then build the CS network according to the need of EVs, since the population distribute discretely and it is hard to build an exhaustive network before-head. Moreover, compare to the utility of charging poles, the network should focus more on maximize coverage and customers' cost. Also, the overall distribution of CSs in different areas should be proportional to the population in the area. However, in a country with high population density, we think that the exact sequence and distribution of CSs depend on the urbanization of the country, which will be discussed next.
+\subsubsection{Urbanization as a Key Factor}
+In high-urbanized country, most population live and work in urban areas. Thus, a prior CS network can be built in high-population cities to meet the intense need of the dense population. In this situation, the distribution of DCSs and SCSs in urban, suburban and rural areas can refer to that in Uruguay. On the other hand, if the country has relatively low urbanization, the high population density will cause a considerable difference in the population in urban and rural areas between day and night. Under this circumstance, the distribution of DCSs and SCSs in urban, suburban and rural areas should refer to that we propose for US, so that the different need can all be met. Moreover, since the urbanization is relatively low, it is hard to build a CS network before the EV delivery. Hence, the government should build the CS network in response to the need of EVs in a low-urbanized country.
+
+
+\subsection{Classification by Wealth Distribution}
+The inequality in wealth distribution may also cause different trend in the increase of proportion of EVs. In a country with small difference between wealth distribution, the demand, and thus the increase of proportion of EVs, depends on the supply of EVs. Thus, the growing plan is similar to that in Uruguay. On the other hand, in a country where the difference between the wealth distribution is large, the logistic model for the demand and increase in proportion may not apply. After the interest of the part of population who can afford an EV reaches the maximum, the proportion of EV stops increasing. Although the proportion is very much like lower than 50\%, the government should announce the ban so that the market will adjust the product according to the policy and the public will be encouraged to buy EVs. 
+
+\section{Influence of Other Transportations}
+\begin{itemize}
+\item \textbf{Car Share and Ride-share Services}\\
+As technology is developing pretty fast nowadays, there are already ride-share services in many countries around the world. However, since bikes can only carry people to travel a short distance, and the speed of this kind of transportation is not fast enough, it actually will not affect the business of EVs. The car share service, like Zipcar, will increase the sales of EVs in a short period of time, but since the companies promise that customers need not to worry about paying for recharging, as time passes more and more people will rely on car sharing services instead of buying a private car themselves.
+\item \textbf{Self-driving Cars}\\
+The self-driving car is much more convenient than the EVs actually, since people no longer need to pay attention to driving. However, since this is a kind of cars that need higher technology to invent and to maintain, it will also need more money for car maintenance. Thus, even after the self-driving car is invented, only people that can afford the cars and their maintenance fees will drive them, others may still rely on their private EVs or the car share system more.
+\item \textbf{Rapid Battery-swap Stations}\\
+Once the rapid battery-swap station is introduced, people that do not want to wait too long for their cars to recharge or just have something hurry to do, they can then go to the rapid battery-swap station in order to save time. However, the battery-swap service must be more expensive then the supercharging service or destination charging, as the service requires a brand new battery. Therefore, this kind of service will affect the charging station, but will not make them disappear forever.
+\item \textbf{Flying cars and Hyperloop}\\
+As Hyperloop is extremely expensive and hard to build with current technology, the train ticket must be much more expensive than any other transportation system, and since it runs slower than the airplane, few people will actually take it as transportation means. Flying cars are actually similar to Hyperloop, as they are too expensive to buy and to maintain, it will not be as popular as EVs in the future. Thus these two transportation will nor cause much influence on the increase of EVs.
+\end{itemize}
+
+\section{Results and Sensitivity Analysis}
+\subsection{Statistic Results}
+For each task, we plug the values of the parameters appearing in  each objective functions into our SPEA-II model. The values vary with urban/rural areas, in which the charging stations can be constructed at, and costs depending on the type of charging stations.
+\subsubsection{Case of U.S.}
+For the first task, we consider about the investment cost, consumers' cost, and charging utility and put these values into SPEA-II model. We figured that there are 251,520 destination charging stations and 352,128 supercharging stations in need.
+The distribution of each type of stations according to different area is displayed in Table 2.
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{l|c|c}
+\toprule
+ & DCS &SCS\\\hline
+Urban&$25152$ &92712\\
+Suburban&$72057$ & 281702\\
+Rural &28550 & 70425\\
+\bottomrule
+\end{tabular}
+\caption{Distribution of CSs in U.S.}
+\end{table}
+\subsubsection{Case of Uruguay for Instantaneous Transition}
+For the first part of the second task, we only take customers' cost and charging utility into consideration. The distribution of each type of stations according to different area is displayed in Table 3. We will replace all of the gas stations by charging stations. Furthermore, we plan for additional SCSs near schools, shopping malls, and center city/downtown while additional DCSs near parking lots and hotels.\\
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{l|c|c}
+\toprule
+ & DCS &SCS\\\hline
+Urban&5043& 15842\\
+Rural &265 & 833\\
+\bottomrule
+\end{tabular}
+\caption{Distribution of CSs in Uruguay}
+\end{table}
+
+\subsubsection{Case of Uruguay for Evolvement}
+For the second part of the second task, we consider investment cost and customers' cost in cities in the first stage of evolvement. During the second stage of evolvement, we consider about investment cost and charging utility in urban area for more SCSs, and we consider the investment cost, customers' cost, and charging utility for the construction of DCSs and SCSs in rural area. The geographical and time distribution of the charging stations is displayed in Table 4,5.
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{l|c|c}
+\toprule
+ & DCS &SCS\\\hline
+Urban&4978& 10081\\
+Rural&0&0\\
+\bottomrule
+\end{tabular}
+\caption{Distribution of CSs in Stage 1 in Uruguay}
+\end{table}
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{l|c|c}
+\toprule
+ & DCS &SCS\\\hline
+Urban&0& 5684\\
+Rural &272 & 845\\
+\bottomrule
+\end{tabular}
+\caption{Addition CSs in Stage 2 in Uruguay}
+\end{table}
+\subsection{Sensitivity Analysis}
+In our model, some inputs are not precise enough for the lack of actual data of SCS and DCS in real life, and some data are hard to obtain directly. Those input and data will affect the result of the model, so we implement a sensitivity analysis on the inputs and data.
+
+In fact, we cannot obtain the data of investment in construction of SCS and DCS and the customers' costs for both of them, so sensitivity analysis is basically conducted on these data. However, since we based our statistics on the investment in construction of gas stations and the cost for electricity, we think that deviations on the numbers that we count does not change our analysis of the building of SCS and DCS network. Moreover, we analyze on the sensitivity of government investment, customer cost and utility rate in terms of mutation probability and crossover probability and get the following statistic.
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{c|c|c|c}
+\toprule
+ & Min f1 & Min f2 & Max f3\\\hline
+Crossover = 0.6 Mutation = 0.08 & 10,200 &1,008,003 & 0.51572\\
+Crossover = 0.6 Mutation = 0.05 & 6,200 & 1,008,010 & 0.51319\\
+Crossover = 0.6 Mutation = 0.10 & 118,000 & 1,008,024 & 0.50561\\
+Crossover = 0.7 Mutation = 0.08 & 90,600 & 1,008,017 & 0.50225\\
+Crossover = 0.5 Mutation = 0.08 & 70,800 & 1,008,010 & NaN\\
+\bottomrule
+\end{tabular}
+\caption{Sensitivity Analysis for Crossover and Mutation data}
+\end{table}
+From the table we can see that the customers' costs are not affected very much by the statistic, but charging poles' utility is highly influenced by the statistic we use.
+\section{Strength and Weakness}
+\subsection{Strength}
+\begin{itemize}
+\item We consult many papers written by previous scholars, thus our model is in accordance with the issues raised and raised and discussed in real life.
+\item The classification of different growing models given to fit in various situation takes different aspects into consideration, so that each country can find it in one of the class.
+\end{itemize}
+\subsection{Weakness}
+\begin{itemize}
+\item There are many places listed on Tesla’s website that are actually from the same city or county, but they have different names. In order to save time, we count them separately.
+\item The model we use in different situations are too simple, in which we ignore other complex factors that may contribute to different results, e.g. the change in population and economic condition, and maximal energy use.
+\item We fail to find the real data about the cost of constructing two types of charging stations, operation cost, and reinforcement cost. so we refer to the cost of construction, operation, and reinforcement cost of gas stations. 
+\end{itemize}
+\newpage
+\section{Handout} 
+\label{sec:handout} 
+This handout aims to give some suggestions and key factors that should be taken into consideration when a country is developing its Electric Vehicle system and transiting the energy use from gas to electricity. Overall, we propose that the gas vehicle ban should be announced when the proportion of electric vehicles achieves 50\%, and a charging station network can be built prior to the sale of electric vehicles in urban areas with high population density. In the following context, we classify different growing plans according to geographical patterns, land area, population distribution, progress of urbanization, and wealth distribution, so that each country can refer to its most suitable classification.
+\begin{itemize}
+\item \textbf{Geographical factors:} Geographical characters decide the country's energy resource and its land area. In turn, it influences the public acceptance of a new-energy vehicle and the decision of whether building charging stations prior to or after the use of electric vehicles. 
+\begin{itemize}
+\item \textbf{Land Area:} Due to resource utility, the land area impacts the order of constructing charging stations and introducing electric vehicles. In the countries with large land area, the government can build charging stations in response to the demand of electric vehicles, since the average distance driven per day plays a big part in charging utility. In relatively small countries, the order may depend on population density distribution.
+\item \textbf{Geographical patterns:} Resources of energy may vary. If the price of electricity is higher than that of gasoline in a country, it will takes more time for citizens to accept electric vehicles, and vise versa. Thus, a government with higher electricity price should announce the ban when the rate of increase in Proportion of EVs drop near 0 to encourage the transition.
+\end{itemize} 
+\item \textbf{Population-related factors}
+\begin{itemize}
+\item \textbf{Population Distribution:} For a country with low population density, we propose that it should first develop the electric vehicle market, and then build the charging station network according to the demand of electric vehicles. The overall distribution of charging stations in different areas should be proportional to the population in the area.
+\item \textbf{Urbanization:} For a highly-urbanized country with high population,
+highly-populated cities can have charging station network prior to the entrance of electric vehicles market. On the other hand, if the country has relatively low urbanization, we propose the government to construct the charging station network in response to the demand of electric vehicles and we suggest the government to refer the distribution of charging stations from the sample of US.
+\end{itemize}
+\item \textbf{Wealth Distribution:} For a country with a great proportion of wealth inequality, after the part of the population who is willing to afford an electric vehicles reaches the maximum, the government should announce the ban to make the market adjust to the product and encourage the other part of population to buy electric vehicles.
+\end{itemize}
+Thank you for taking your time reading our suggestions. We sincerely hope that this handout do offer some useful ideas and advice.
+
+
+\newpage
+\begin{thebibliography}{99}\raggedright
+\bibitem{1} A. Awasthi, D. Chandra, S. Rajasekar, A. K. Singh, A. D. V. Raj and K. M. Perumal, "Optimal infrastructure planning of electric vehicle charging stations using hybrid optimization algorithm," \textit{2016 National Power Systems Conference} (NPSC), Bhubaneswar, 2016, pp.1-6.
+
+\bibitem{2} S Beggs, S Cardell, J Hausman, Assessing the potential demand for electric cars, \textit{Journal of Econometrics}, Volume 17, Issue 1, 1981, pp.1-19.
+
+\bibitem{3} R. Shi, K. Y. Lee, Multi-Objective Optimization of Electric Vehicle Fast Charging Stations with SPEA-II, \textit{IFAC-PapersOnLine}, Volume 48, Issue 30, 2015, pp.535-540.
+
+\bibitem{4} H. Spieker, A. Hagg, A. Asteroth, S. K. Meilinger, V. Jacobs, A. Oslislo, \textit{Successive evolution of charging station placement}, International Symposium on Innovations in Intelligent Systems and Applications Conference Paper, September 2015.
+\url{https://www.researchgate.net/publication/280941483_Successive_evolution_of_charging_station_placement?tab=overview}
+
+\bibitem{5}Tesla Destination Charging Station, Retrieve from \url{https://www.tesla.com/destination-charging}
+
+\bibitem{6} Tesla Supercharging Station, Retrieve from \url{https://www.tesla.com/supercharger}
+
+\bibitem{7} International Energy Agency, \textit{Global EV Outlook 2017-Two Million and Counting}, 2017, \url{https://www.iea.org/publications/freepublications/publication/GlobalEVOutlook2017.pdf}
+
+\bibitem{8} J. Stewart, \textit{When You'll Get Your Tesla Model 3 — And How To Get It Faster}, January 7th, 2018, Retrieve from \url{https://www.wired.com/story/tesla-model-3-delivery-timeline/}
+
+\bibitem{9} US Department of Transportation, and Federal Highway Administration. U.S. automobile registrations in 2016, by state. \url{https://www.statista.com/statistics/196010/total-number-of-registered-automobiles-in-the-us-by-state/} (accessed February 12, 2018).
+
+\bibitem{10} World Bank. Degree of urbanization in the United States from 1967 to 2015. \url{https://www.statista.com/statistics/269967/urbanization-in-the-united-states/} (accessed February 12, 2018).
+
+\bibitem{11} Population of Uruguay (2018 and historical), Elaboration of data by United Nations, Department of Economic and Social Affairs, Population Division, retrieve from \url{http://www.worldometers.info/world-population/uruguay-population/}
+
+\bibitem{12} J. Kolko, \textit{How Suburban Are Big American Cities?}, last edited May 21, 2015, \url{https://fivethirtyeight.com/features/how-suburban-are-big-american-cities/}
+\end{thebibliography}
+ 
+
+% - - - - - - - - - - - END Model Solution - - - - - - - - - - -
+
+
+% - - - - - - - - - - - Results - - - - - - - - -
+	% labels allow you to cross-reference a section later in the document, without having to remember its number
+%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Delete existing text when writing your own report.
+
+
+
+
+% - - - - - - - - - - - END Results - - - - - - - - - - -
+
+
+
+
+
+% - - - - - - - - - - - Discussion - - - - - - - --
+\begin{table}
+\caption{\textbf{Appendix A: Complete data table of Tesla CSs in the US}}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline \\
+States &Current DCS&Current SCS&Upcoming SCS& Approx EVs& Evs/CS \\ \hline
+ Alabama&24&7&	3&	22844&672\\ \hline
+ Alaska&1&0&0&1833&1833\\ \hline
+ Arizona&69&14&7&23780&264\\ \hline
+ Arkansas&24&1&6&9426&304\\ \hline
+ California&615&63&109&147684&188\\ \hline
+ Colorado&79&10&11&18078&181\\ \hline
+ Connecticut&31&9&12&13524&260\\ \hline
+ Delaware& 5&2&1&4470&559\\ \hline
+ DC&21&0&4&2068&83\\ \hline
+ Florida&256&20&28&78553&258\\ \hline
+ Georgia&86&7&8&35382&350\\ \hline
+ Hawaii&7&0&3&5165&517\\ \hline
+ Idaho&19&5&2&60790&2338 \\ \hline
+ Illinois&57&16&4&45247&588\\ \hline
+ Indiana&28&6&5&23302&597\\ \hline
+ Iowa&12&5&4&13031&621\\ \hline
+ Kansas&8&6&2&9804&613\\ \hline
+ Kentucky&23&5&0&17136&612\\ \hline
+ Louisiana&23&6&1&14253&475\\ \hline
+ Maine&50&3&5&4092&71\\ \hline
+ Maryland&38&9&8&19760&359\\ \hline
+ Massachusetts&41&9&15&23055&355\\ \hline
+ Michigan&34&12&9&32484&591\\\hline
+ Minnesota&29&9&5&20817&484\\ \hline
+ Mississippi&20&4&2&8407&323\\ \hline
+ Missouri&39&8&5&22479&432\\ \hline
+ Montana&14&8&7&4412&152\\\hline
+ Nebraska&3&5&0&7003&875\\\hline
+ Nevada&46&13&3&10474&169\\\hline
+ New Hampshire&25&5&3&5295&160\\\hline
+ New Jersey&33&8&15&28479&509\\\hline
+ New Mexico&19&9&4&6612&207\\\hline
+ New York&308&20&31&48909&136\\\hline
+ North Carolina&77&10&3&35464&394\\\hline
+ North Dakota&1&0&6&2433&348\\\hline
+ Ohio&61&9&8&46939&602\\\hline
+ Oklahoma&8&5&1&13792&985 \\\hline
+ Oregon&78&13&13&14836&143\\\hline
+ Pennsylvania&70&15&6&46405&510\\\hline
+ Rhode Island&3&1&1&4362&872\\\hline
+ South Carolina&38&5&1&18404&418\\\hline
+ South Dakota&13&6&2&3646&174\\\hline
+ Tennessee&37&8&2&23478&500\\\hline
+ Texas&207&31&24&82873&316\\\hline
+\end{tabular}
+\end{table}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline \\
+States &Current DCS&Current SCS&Upcoming SCS& Approx EVs& Evs/CS \\ \hline
+ Utah&33&11&2&9406&204\\\hline
+Vermont&28&3&2&2296&70\\\hline
+Virginia&105&11&5&32425&268\\\hline
+Washington &86&10&18&29357&258\\\hline
+ West Virginia&29&6&2&5846&158\\\hline
+ Wisconsin&39&11&3&21599&408\\\hline
+ Wyoming&11&9&4&2116&88\\\hline
+ Average&59&9&8.3&23222&448\\\hline
+\end{tabular}
+% labels allow you to cross-reference a section later in the document, without having to remember its number
+%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Delete existing text when writing your own report.
+
+
+ 
+
+% - - - - - - - - - - - END Discussion - - - - - - - - - - -
+
+
+
+% - - - - - - - - - - - References - - - - - - - - -
+
+
+% - - - - - - - - - - - END References - - - - - - - - - - -
+
+
+
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+%				END YOUR DOCUMENT - did you proofread?
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+\end{document} % End of document. Nothing after this line will appear in .pdf
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
