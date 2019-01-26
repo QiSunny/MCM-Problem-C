@@ -7,6 +7,8 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{booktabs}
+\usepackage{float}
+\usepackage[export]{adjustbox}
 \newtheoremstyle{exmp}{3pt}{3pt}{\small}{\parindent}{\bfseries}{:}{0.5em}{}
 \theoremstyle{exmp}
 \newtheorem{example}{Example}
@@ -148,6 +150,17 @@ The next task we do is giving our strategies for countering the opioids crisis.
 % - - - - - - - - - - - Model Design - - - - - - - - -
 \section{Assumptions} 
 
+\begin{itemize}
+    \item The country location data are correct as provided.
+    
+    \item The drug can only be transferred by contact physically.
+    
+    \item Since the rate of drug relapse is relatively high (about 85$\%$) within a year after drug treatment action, we assume that once one got addicted to drugs, he or she will constantly be dependent on drugs.
+    % remember to reference the 85% data.
+\end{itemize}
+
+%---------------------End Assumption------------------------
+
 \vspace{-.5em}
 \begin{table}
 \centering
@@ -162,8 +175,19 @@ Nomenclature & Meaning\\\hline
 %  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % Delete existing text when writing your own report.
 
- 
+\section{Spread and Characteristics of Synthetic Opioids and Herion Incidents}
 
+In this section, we are going to build a model to describe and predict the trend of the drug usage in the 5 states we are focusing on. First we organized the data provided such that we separated the incidents of synthetic opiods, heroin and other types of drug. For heroin and synthetic opioids, we did a heat map for the number of drug reports within the 5 states from year 2010 to 2017 respectively. Using these graphs, we can easily visualize the trends of drug usage and trace its development over the years. Then we construct %%%%%%%%some model%%%%%%%%%%
+such that we are able to predict the trend in the next %several
+years.
+ 
+\subsection{Visualization of Drug Reports}
+% \begin{figure}[H]
+%     \includegraphics[width = 0.4\textwidth, left]{2010.png}
+%     \includegraphics[width = 0.4\textwidth, right]{2011.png}
+%     \caption{Caption}
+%     \label{fig:my_label}
+% \end{figure}
 % - - - - - - - - - - - END Model Design - - - - - - - - - - -
 
 
@@ -182,7 +206,7 @@ Nomenclature & Meaning\\\hline
 
 
 % - - - - - - - - - - - References - - - - - - - - -
-[1] http://www.comap-math.com/mcm/2019\_MCM-ICM\_Problems.zip
+% [1] http://www.comap-math.com/mcm/2019\_MCM-ICM\_Problems.zip
 
 
 % - - - - - - - - - - - END References - - - - - - - - - - -
