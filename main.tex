@@ -18,6 +18,8 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{xcolor}
 
+\usepackage[font=scriptsize]{caption}
+
 % set page margins
 \usepackage[top=1in, bottom = 0.7in, left=1in, right = 1in,letterpaper]{geometry}
 
@@ -182,12 +184,41 @@ such that we are able to predict the trend in the next %several
 years.
  
 \subsection{Visualization of Drug Reports}
+In the following graphs, we use different shades of blues and oranges to represent the number of heroin and synthetic opioid reports. The deeper the color is, the more reports that county had. 
 % \begin{figure}[H]
 %     \includegraphics[width = 0.4\textwidth, left]{2010.png}
 %     \includegraphics[width = 0.4\textwidth, right]{2011.png}
 %     \caption{Caption}
 %     \label{fig:my_label}
 % \end{figure}
+\begin{figure}[!htb]
+   \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2010.png}
+     \caption{2010 Heroin}\label{H10}
+   \end{minipage}%\hfill
+   \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2013.png}
+     \caption{2013 Heroin}\label{H13}
+   \end{minipage}
+\end{figure}
+\begin{figure}[!htb]
+   \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2015.png}
+     \caption{2015 Heroin}\label{H15}
+   \end{minipage}%\hfill
+   \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2017.png}
+     \caption{2017 Heroin}\label{H17}
+   \end{minipage}
+\end{figure}
+
+\newpage
+
+
 % - - - - - - - - - - - END Model Design - - - - - - - - - - -
 
 
