@@ -126,19 +126,19 @@
 \section{Introduction} 
 \label{sec:introduction} 
 \subsection{Problem Background}
-The United States is facing a national wide problem of increasing use of synthetic and non-synthetic opioids. The uses of drugs are either for the treatment or management of pain, which is certainly a legal prescription use, or for the recreational purposes, which are illegal and non-prescription use. The use of opioids will endanger life and personal property as using opioids disorderly may cause hepatitis, HIV infection, and also neonatal abstinence syndrome, federal organizations and federal government are trying their best to ``save lives and prevent negative health effects of this epidemic''.[1] Thus, for the purpose of countering the opioids crisis, in this paper we will: \begin{itemize}
-    \item Use the NFLIS data provided to model the spread and characteristics of the reported synthetic opioids and heroin incidents in and between the five states, Ohio, Kentucky, West Virginia, Virginia, and Pennsylvania, and their counties over time.
-    \item Use the U.S Census socio-economic data provided to solve
+In recent years, the United States is facing a countrywide problem with respect to drug abuse as prescription use and  illicit recreational use. Drug abuse will undermine human health and personal property as using drugs disorderly may cause hepatitis, HIV infection, and also neonatal abstinence syndrome. Federal government and organizations are trying their best to ``save lives and prevent negative health effects of this epidemic''.[1] Thus, for the purpose of countering the opioid crisis, in this paper we will: \begin{itemize}
+    \item Use the 2010-2017 NFLIS data provided to model the spread and find the characteristics of the reported synthetic opioids and heroin incidents in and between the five states, Ohio, Kentucky, West Virginia, Virginia, and Pennsylvania in terms of their counties for trend analysis.
+    \item Use the U.S Census socio-economic data provided to improve the model we constructed and give a more precise % need to be modified
     \item Identify strategies for countering the opioids crisis.
 \end{itemize}
 
 
 \subsection{Previous Research}
-There are various researches on the topic of infectious disease transmission. Most of them used Cellular Automaton algorithm (CA), such as Yu Lei, Xue Hui-Feng, Gao Xiao-Yan, and Li Gang's research on the transmission of SARS in 2007.[2] Other works like Steady Mushayabasa's research on illicit drug use in South Africa use his own mathematical model to illustrate the numerical results in 2015.%NEED MORE WORK ON THIS
+There are various researches on the topic of infectious disease transmission. Most of them are based on Cellular Automaton algorithm (CA), such as Yu Lei, Xue Hui-Feng, Gao Xiao-Yan, and Li Gang's research on the transmission of SARS in 2007.[2] Other works like Steady Mushayabasa's research on illicit drug use in South Africa use his own mathematical model to illustrate the numerical results in 2015.%NEED MORE WORK ON THIS
 The major work that we refer to is the Steady Mushayabasa's research paper and his model.
 
 \subsection{Our work}
-In this solution, we first build the model of the spread and characteristics of synthetic opioids and heroin from the year 2010 to 2017 with the provided NFLIS data, and evaluate all possible places in each states that might be the origin of the drugs or narcotic analgesics. Then we build models to ...
+In this solution, we first build the model of the spread and characteristics of synthetic opioids and heroin from the year 2010 to 2017 with the provided NFLIS data, and evaluate all possible places in each states that might be the origin of the drugs or narcotic analgesics.[3] Then we build models to ...
 The next task we do is giving our strategies for countering the opioids crisis.
 
  % labels allow you to cross-reference a section later in the document, without having to remember its number
@@ -155,12 +155,14 @@ The next task we do is giving our strategies for countering the opioids crisis.
 \section{Assumptions} 
 
 \begin{itemize}
-    \item The country location data and the NFLIS data are correct as provided.
+    \item The NFLIS data and US Socio-economic data are correct as provided.
     
-    \item The drug can only be transferred by contact physically.
+    \item The drug can only be transported from one county to its adjacent counties. 
     
-    \item Since the rate of drug relapse is relatively high (about 85$\%$) within a year after drug treatment action, we assume that once one got addicted to drugs, he or she will constantly be dependent on drugs.
+    \item Since the rate of drug relapse is relatively high (about 85$\%$) within a year after drug treatment action, we assume that once one got addicted to drugs, he or she will constantly be dependent on drugs.[4]
     % remember to reference the 85% data.
+    % delete the third one. Conjecture: Since only 85% of addicted people can withdraw, drug reports in each county will keep increasing unless a law enforcement
+    
 \end{itemize}
 
 %---------------------End Assumption------------------------
@@ -170,8 +172,43 @@ The next task we do is giving our strategies for countering the opioids crisis.
 \centering
 \begin{tabular}{c|l}
 \toprule \\
-Nomenclature & Meaning\\\hline
+Nomenclature & Meaning \\
+\hline
+$N(t)$ & total population \\
 
+$S(t)$ & individuals who are not yet illicit drug users but interact with drug users \\
+
+$I(t)$ & light or occasional drug users \\
+
+$I_a(t)$ & heavy drug users \\
+
+$M(t)$ & people who have mentally illness \\
+
+$R(t)$ & detected illicit drug users \\
+
+$\beta$ & strength of intersection between the susceptible individuals and illicit drug users \\
+
+$\kappa$ & \makecell{the modification factor that accounts for the increased likelihood of heavy illicit drug \\ & users to influence more new drug users compared with light drug users} \\
+
+$\alpha$ & the rate at which light drug users become heavy drug users \\
+
+$\gamma$ & rate of detection and rehabilitation of individuals in class $I$ \\
+
+$\epsilon$ & rate of detection and rehabilitation of individuals in class $M$ \\
+
+$\rho$ & rate of detection and rehabilitation of individuals in class $I_a$ \\
+
+$\sigma$ & rate at which light illicit drug users develop mental health \\
+
+$\phi$ & rate at which heavy illicit drug users develop mental health \\
+
+$\psi$ & permanent exit rate of light drug users \\
+
+$d$ & permanent exit rate of heavy drug users \\
+
+$\omega$ & rate at which individuals in rehabilitation recover \\
+
+$\delta$ & rate at which mentally ill individuals permanently exit the model \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -181,12 +218,22 @@ Nomenclature & Meaning\\\hline
 
 \section{Spread and Characteristics of Synthetic Opioids and Herion Incidents}
 
-In this section, we are going to build a model to describe and predict the trend of the drug usage in the 5 states we are focusing on. First we organized the data provided such that we separated the incidents of synthetic opiods, heroin and other types of drug. For heroin and synthetic opioids, we did a heat map for the number of drug reports within the 5 states from year 2010 to 2017 respectively. Using these graphs, we can easily visualize the trends of drug usage and trace its development over the years. Then we construct %%%%%%%%some model%%%%%%%%%%
+In this section, we are going to build models to describe and predict the trends of the drug usage in the 5 states we are focusing on: Ohio, Kentucky, West Virginia, Virginia, and Pennsylvania. First we separated different kinds of addictive drugs and classified all drugs other than Buprenorphine, Codeine, Heroin, Hydrocodone, Hydromorphone, Hydorcodeinone, Morphine, Opiate, Opium, Oxycodone, Oxymorphone, and Thebaine as synthetic opioids, and organized the data provided. For heroin and synthetic opioids, we did a heat map for the number of drug reports within the 5 states from year 2010 to 2017 respectively. Using these graphs, we can easily visualize the trends of drug usage and trace its development over the years. Then we construct %%%%%%%%some model%%%%%%%%%%
 such that we are able to predict the trend in the next %several
 years.
+
+\subsection{Assumption}
+\begin{itemize}
+    \item The mentally ill population will not influence the susceptible individuals to become illicit drug users.
+    
+    \item The population in each county will not change over year. %MAY NEED TO CHANGE
+    \item Because we are not allowed to use the state population data, we have to assume that the number of total drug report of a state is proportional to its population.
+\end{itemize}
  
 \subsection{Visualization of Drug Reports}
 In the following graphs, we use different shades of blues and oranges to represent the number of heroin and synthetic opioid reports. The deeper the color is, the more reports that county had. 
+~\\
+Since according to the data provided, the number of Heroin use reports is constantly increasing roughly at the same rate, we picked pictures by the same time interval (2 years). Yet according to the data provided, the use of synthetic opioids reports grew significantly from year 2014 to year 2015 in Ohio, and then drop down somehow in year 2016, but then rise again in year 2017, so the pictures we showed are chosen specifically for these changes.
 % \begin{figure}[H]
 %     \includegraphics[width = 0.4\textwidth, left]{2010.png}
 %     \includegraphics[width = 0.4\textwidth, right]{2011.png}
@@ -248,9 +295,32 @@ In the following graphs, we use different shades of blues and oranges to represe
    \end{minipage}
 \end{figure}
 
+\subsection{Model Framework}
+%In this model, we assume a constant size of population with recruitment and non-illicit-related death rate at time $t$ given by $\mu$. We separated the total population into several groups, including susceptible individuals, light and heavy drug users, people with mentally illness because of drugs, and detected illicit drug users.
 
-Since according to the data provided, the number of Heroin use reports is constantly increasing roughly at the same rate, we picked pictures by the same time interval (2 years). Yet according to the data provided, the use of synthetic opioids reports grew significantly from year 2014 to year 2015 in Ohio, and then drop down somehow in year 2016, but then rise again in year 2017, so the pictures we showed are chosen specifically for these changes.
-
+%\begin{align}
+%    N(t) = S(t) + I(t) + I_a(t) + M(t) + R(t),
+%\end{align}
+%~\\
+%Then we assume that susceptible individuals acquire illicit drug use habits at rate \begin{align}
+%    \lambda = \beta (I + \kappa I_a)
+%\end{align}
+%~\\
+%The model then takes the form \begin{align}
+%\begin{split}
+%    \frac{dS}{dt} &= \mu - \lambda S - \mu S, \\
+%    \frac{dI}{dt} &= \lambda S - (\alpha + \gamma + \sigma + \mu + \psi)I, \\
+%    \frac{dI_a}{dt} &= \alpha I - (\rho + \phi + \mu + d)I_a, \\
+%    \frac{dM}{dt} &= \sigma I + \phi I_a - (\epsilon + \mu + \delta)M, \\
+%    \frac{dR}{dt} &= \gamma I + \rho I_a + \epsilon M - (\mu + \omega)R
+%\end{split}
+%\end{align}
+%~\\
+%Put equations (3) in the closed set, we will have \begin{align}
+%    \Omega = \{(S, I, I_a, M, R) \in %\mathbb{R}^5_+ : 0 \le N \le 1\},
+%\end{align}
+%~\\
+%where $\Omega$ is positively invariant with respect the the above equations (2).
 \newpage
 
 
