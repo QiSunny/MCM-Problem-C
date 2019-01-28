@@ -162,7 +162,7 @@ In this solution, we first, by referring to Sirakoulis et al's model, build the 
     \item The population in each county will remain constant over years. 
     \item People only acquire drugs in the county that they are residing.
     \item In every year, the county which has nonzero drug reports will influence its adjacent counties merely by increasing each one's number of drug reports.
-    \item In every year, the number of drug reports in a county will decrease merely because of law enforcement.
+    %\item In every year, the number of drug reports in a county will decrease merely because of law enforcement.
     %Since the rate of drug relapse is relatively high (about 85$\%$) within a year after drug treatment action, we assume that once one got addicted to drugs, he or she will constantly be dependent on drugs.[4]
     % remember to reference the 85% data.
     % delete the third one. Conjecture: Since only 85% of addicted people can withdraw, drug reports in each county will keep increasing unless a law enforcement
@@ -205,14 +205,15 @@ $l$ & the coefficient that represents the effect of the diagonal neighbors of th
 
 \section{Spread and Characteristics of Synthetic Opioids and Herion Incidents}
 
-In this section, we are going to build a CA model to describe and predict the trends of the drug usage in the five states we are focusing on: Ohio, Kentucky, West Virginia, Virginia, and Pennsylvania. First we categorize the list of narcotic analgesic by synthetic, semi-synthetic, and non-synthetic opioids. Then the list of synthetic opioids contains all drugs other than Buprenorphine, Codeine, Heroin, Hydrocodone, Hydromorphone, Hydorcodeinone, Morphine, Opiate, Opium, Oxycodone, Oxymorphone, and Thebaine.\\
+In this section, we are going to build a CA model to describe and predict the trends of the drug usage in the five states we are focusing on: Ohio, Kentucky, West Virginia, Virginia, and Pennsylvania. First we categorize the list of narcotic analgesic by synthetic, semi-synthetic, and non-synthetic opioids. Then the list of synthetic opioids contains all drugs other than Buprenorphine, Codeine, Heroin, Hydrocodone, Hydromorphone, Hydorcodeinone, Morphine, Opiate, Opium, Oxycodone, Oxymorphone, and Thebaine.
+
 For heroin and synthetic opioids, we make heat maps for the number of drug reports within the five states from 2010 to 2017 respectively.  Using these graphs, we can easily visualize the trends of drug usage and trace its development along the timeline. Then, referring to Sirakoulis et al's work, we construct the corresponding CA model, which can be successfully tested by the given data in eight years. By using this model, we are able to predict the future trend-in-use and, in a reversed direction, locate the starting points of specific opioids in each of five states.  
 
  
-\subsection{Visualization of Drug Reports}
+\subsection{Geographical Visualization of Drug Reports}
 In the following graphs, we use different shades of blue colors and orange colors to represent the number of heroin and synthetic opioid reports from the year of 2014 to 2017. The blue colors represent the number of annual Heroin reports in each county and the orange colors represent that of synthetic opioids.  The deeper the color of the county is, the more reports that county had in that year.
-Since the numbers of annual reports about Herion increase at roughly the same rate as year passes during 2010-2013, we only show the distribution of annual reports geographically during 2014-2017, where significant and noteworthy changes occurred. The situation is similar to that of synthetic opioids, so we would also do the same thing to them.\\
-~\\
+Since the numbers of annual reports about Herion increase at roughly the same rate as year passes during 2010-2013, we only show the distribution of annual reports geographically during 2014-2017, where significant and noteworthy changes occurred. The situation is similar to that of synthetic opioids, so we would also do the same thing to them.
+
  As told by the data, the number of annual Heroine reports experienced a mild growth every year. On the other hand, the amount of synthetic opioids reports  experienced a dramatically growth from year 2014 to year 2017, especially in Ohio.  As a result, the pictures we showed are chosen specifically for these changes.
 
 %----------------------------------------------------------------
@@ -328,7 +329,7 @@ Notice that the change of state of a specific cell from time $t$ to $t+1$ is com
 ~\\
 \subsubsection{CA Formation for this problem}
 Our CA model is a 2 dimensional grid where the width of the two sides are taken to be equal, namely $w_1 = w_2$. Each cell in the grid represents a county according to the geographic information on map such that the location and neighborhood information is well-preserved in this grid. Although not accurate and non-realistic, for this specific problem, we are restricting the inter-county communication only to the neighborhood counties, that is, a county can only be influenced by its 8 neighbors, namely on the top, left, right, bottom, top left, top right, bottom left and bottom right. We will discuss the impact of global communication in later sections.
-\\
+
 At the initial time, we assign a initial state to each of the cell in the grid according to a specific local rule. This rule is defined as following:
 ~\\
 The state $C_{i,j}^t$ of the $(i,j)$ CA cell at time $t$ is
@@ -353,10 +354,17 @@ The transition of the state of each cell each time step is done according to the
 \end{align}
 where\\
 $\kappa$ is the threshold value for the annual number of the certain opioid reports within a county,\\
-$[S_{i,j}^t > \kappa] \in \{0,1\}$. If $S_{i,j}^t > \kappa$ is true, $[S_{i,j}^t > \kappa]=1$. If it is fale, $[S_{i,j}^t > \kappa]=0$.\\
-$\rho$ is the self-increasing rate of a county if the drug community in that county is larger than 
+$[S_{i,j}^t > \kappa] \in \{0,1\}$. If $S_{i,j}^t > \kappa$ is true, $[S_{i,j}^t > \kappa]=1$. If it is false, $[S_{i,j}^t > \kappa]=0$.\\
+$\rho$ is the self-increasing rate of a county if the number of the certain opioid reports is larger than $\kappa$,\\
+$k$ is the coefficient that represents the effect of the neighbors sharing a side with the cell,\\
+$l$ is the coefficient that represents the effect of the diagonal neighbors of the cell.\\
+
+\subsection{Neighborhood Influence}
 The state of the cell $(i,j)$ at time $t+1$ depends on both within the county and the state of all the 8 neighbors around it as shown in Figure \ref{grids}. 
 
+But the neighborhood influence is at a different rate since they have different boarder lengths. The effect of the adjacent neighbors, namely, $(i-1,j), (i+1,j), (i,j-1), (i,j+1)$ is multiplied by $k$ and the effect of the diagonal adjacent neighbors is multiplied by $l$. Notice that the cells with common sides have more connection with $(i,j)$, while the other four cells which are on the corners would have less connections and thus have less influence on the central one. Therefore, it is always the case that $k > l$.
+
+On the other hand, there are influence within each county, too. Apart from the influence from the neighbors, the size of drug users would increase within the county itself if no severe regulation is posted. Therefore, $\rho$ is the self increasing rate of a county if the drug community in that county is larger than some threshold value $\kappa$. 
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\textwidth]{grids.png}
@@ -364,9 +372,8 @@ The state of the cell $(i,j)$ at time $t+1$ depends on both within the county an
     \label{grids}
 \end{figure}
 
-But the neighborhood influence is at a different rate since they have different boarder lengths. The effect of the adjacent neighbors, namely, $(i-1,j), (i+1,j), (i,j-1), (i,j+1)$ is multiplied by $k$ and the effect of the diagonal adjacent neighbors is multiplied by $l$. Notice that the cells with common sides have more connection with $(i,j)$, while the other four cells which are on the corners would have less connections and thus have less influence on the central one. Therefore, it is always the case that $k > l$.
 
-On the other hand, there are influence within each county, too. Apart from the influence from the neighbors, the size of drug users would increase within the county itself if no severe regulation is posted. Therefore, $\rho$ is the self increasing rate of a county if the drug community in that county is larger than some threshold value $\kappa$. 
+
 \subsubsection{Possible Problems on this model}
 Notice that this model was based on the assumption that no drug users could actually recover from their addiction and little restriction was pushed upon. Therefore, the number of reports within our model will always be increasing instead of decreasing since we do not have the mechanism of control the number of drug users.
 
