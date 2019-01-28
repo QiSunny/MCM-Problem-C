@@ -18,7 +18,7 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{xcolor}
 
-\usepackage[font=small]{caption}
+\usepackage[font=footnotesize]{caption}
 
 % set page margins
 \usepackage[top=1in, bottom = 0.7in, left=1in, right = 1in,letterpaper]{geometry}
@@ -476,25 +476,18 @@ According to our model running on each of the 5 states, we have predicted the tr
 
 Our first model was based on the data provided by the file MCM\_NFLIS\_Data.xlsx. Following is some example of the result yield by our model:
 \subsubsection{Spread and Characteristic}
-The following are examples of the result we had from the model:
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = \textwidth]{OHS27.png}
-    \caption{Possible Spread of Synthetic Opioids in Ohio in Year 2027}
-    \label{OHS27}
-\end{figure}
+The following an example of the State of Ohio of the result we had from the model:
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{OHH27.png}
-    \caption{Possible Spread of Heroin in Ohio in Year 2027}
+    \caption{Possible Spread of Heroin in Ohio in Year 2027. The 0's on the edges are only for the convenience of the code, there is no actual meaning to them.}
     \label{OHH27}
 \end{figure}
-
-The main characteristic of the spread we observed from the result is that the development is mostly centered at 
-
 Notice that for each state, the development of the local drug community is largely dependent on the larger drug counties. As the time evolves, the number of drug reports within that sate would increase at a certain rate and it would also influence the counties around it. 
 
+One thing we believe that the US government has to worry about is that there might be appearance of drug users in nearly all of the counties, even if the counties where no drug is reported. In the future, these counties would eventually have more than 20 reports and start to develop its own drug community within itself.
 
+Therefore, we think the most important 
 
 \subsubsection{Possible Starting Region}
 By using Equation \ref{backwards}, we can get the possible starting point of each type of drug in each sate. Following are some examples of the result yield by our model. 
