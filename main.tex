@@ -18,7 +18,7 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{xcolor}
 
-\usepackage[font=scriptsize]{caption}
+\usepackage[font=small]{caption}
 
 % set page margins
 \usepackage[top=1in, bottom = 0.7in, left=1in, right = 1in,letterpaper]{geometry}
@@ -134,7 +134,7 @@ In recent years, the United States is facing a countrywide problem with respect 
 
 
 \subsection{Previous Research}
-Since this topic involves the interaction between adjacent counties, it is very similar to the model focusing on infectious disease propagation. We looked up for various researches about this topic and found that most of them are based on Cellular Automaton algorithm (CA), such as Yu Lei, Xue Hui-Feng, Gao Xiao-Yan, and Li Gang's research on the transmission of SARS in 2007.[2] The major work that we refer to is Sirakoulis, Karafyllidis, and Thanailakis's research about effects of population on epidemic propogation.[3] %Other works like Steady Mushayabasa's research on illicit drug use in South Africa use his own mathematical model to illustrate the numerical results in 2015.%NEED MORE WORK ON THIS
+Since this topic involves the interaction between adjacent counties, it is very similar to the model focusing on infectious disease propagation. We looked up for various researches about this topic and found that most of them are based on Cellular Automaton algorithm (CA), such as Yu Lei, Xue Hui-Feng, Gao Xiao-Yan, and Li Gang's research on the transmission of SARS in 2007.[2] Mushayabasa's work on illict drug use dynamics is also very related to our topic.[3] The major work that we refer to is Sirakoulis, Karafyllidis, and Thanailakis's research about effects of population on epidemic propogation.[4] %Other works like Steady Mushayabasa's research on illicit drug use in South Africa use his own mathematical model to illustrate the numerical results in 2015.%NEED MORE WORK ON THIS
 %The major work that we refer to is the Steady Mushayabasa's research paper and his model.
 
 \subsection{Our work}
@@ -178,41 +178,24 @@ In this solution, we first, by referring to Sirakoulis et al's model, build the 
 \toprule \\
 Nomenclature & Meaning \\
 \hline
-$N(t)$ & total population \\
+$t$ & time with unit of year\\
 
-$S(t)$ & individuals who are not yet illicit drug users but interact with drug users \\
+$(i,j)$ & spatial coordinates for each cell, i.e. county\\
 
-$I(t)$ & light or occasional drug users \\
+$C_{i,j}^t$ & the state of the ($i,j$) CA cell during year $t$\\
 
-$I_a(t)$ & heavy drug users \\
+$S_{i,j}^t$ & the number of reports for the certain opioid in $(i,j)$ cell during year $t$.\\
 
-$M(t)$ & people who have mentally illness \\
+INF$_{i,j}^t$ & "infectious flag" with only binary values 0 and 1\\
 
-$R(t)$ & detected illicit drug users \\
+$\kappa$ & threshold value for the annual number of opioid reports within a county.\\
 
-$\beta$ & strength of intersection between the susceptible individuals and illicit drug users \\
+$\rho$ & the self increasing rate of a county if the number of reports in that county $>\kappa$\\
 
-$\kappa$ & \makecell{the modification factor that accounts for the increased likelihood of heavy illicit drug \\ & users to influence more new drug users compared with light drug users} \\
+$k$ & the coefficient that represents the effect of the neighbors sharing a side with the cell\\
 
-$\alpha$ & the rate at which light drug users become heavy drug users \\
+$l$ & the coefficient that represents the effect of the diagonal neighbors of the cell.
 
-$\gamma$ & rate of detection and rehabilitation of individuals in class $I$ \\
-
-$\epsilon$ & rate of detection and rehabilitation of individuals in class $M$ \\
-
-$\rho$ & rate of detection and rehabilitation of individuals in class $I_a$ \\
-
-$\sigma$ & rate at which light illicit drug users develop mental health \\
-
-$\phi$ & rate at which heavy illicit drug users develop mental health \\
-
-$\psi$ & permanent exit rate of light drug users \\
-
-$d$ & permanent exit rate of heavy drug users \\
-
-$\omega$ & rate at which individuals in rehabilitation recover \\
-
-$\delta$ & rate at which mentally ill individuals permanently exit the model \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -227,8 +210,8 @@ For heroin and synthetic opioids, we make heat maps for the number of drug repor
 
  
 \subsection{Visualization of Drug Reports}
+In the following graphs, we use different shades of blue colors and orange colors to represent the number of heroin and synthetic opioid reports from the year of 2014 to 2017. The blue colors represent the number of annual Heroin reports in each county and the orange colors represent that of synthetic opioids.  The deeper the color of the county is, the more reports that county had in that year.
 Since the numbers of annual reports about Herion increase at roughly the same rate as year passes during 2010-2013, we only show the distribution of annual reports geographically during 2014-2017, where significant and noteworthy changes occurred. The situation is similar to that of synthetic opioids, so we would also do the same thing to them.\\
-In the following graphs, we use different shades of blue colors and orange colors to represent the number of heroin and synthetic opioid reports from the year of 2014 to 2017. The blue colors represent the number of annual Heroin reports in each county and the orange colors represent that of synthetic opioids.  The deeper the color of the county is, the more reports that county had in that year. 
 ~\\
  As told by the data, the number of annual Heroine reports experienced a mild growth every year. On the other hand, the amount of synthetic opioids reports  experienced a dramatically growth from year 2014 to year 2017, especially in Ohio.  As a result, the pictures we showed are chosen specifically for these changes.
 
@@ -236,76 +219,75 @@ In the following graphs, we use different shades of blue colors and orange color
 %----------------------ADD IT BACK!!!----------------------------
 %----------------------------------------------------------------
 
-% \begin{figure}[H]
-%   \begin{minipage}{0.48\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2014.png}
-%      \caption{2014 Heroin}\label{H14}
-%   \end{minipage}%\hfill
-%   \begin{minipage}{0.48\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2015.png}
-%      \caption{2015 Heroin}\label{H15}
-%   \end{minipage}
-% \end{figure}
+\begin{figure}[H]
+  \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2014.png}
+     \caption{Heroin Reports in 5 states in 2014}\label{H14}
+  \end{minipage}%\hfill
+  \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2015.png}
+     \caption{Heroin Reports in 5 states in 2015}\label{H15}
+  \end{minipage}
+\end{figure}
 
-% \begin{figure}[H]
-%   \begin{minipage}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2014SYN.png}
-%      \caption{2014 Synthetic}\label{S14}
-%   \end{minipage}%\hfill
-%   \begin{minipage}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2015SYN.png}
-%      \caption{2015 Synthetic}\label{S15}
-%   \end{minipage}
-% \end{figure}
+\begin{figure}[H]
+  \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2014SYN.png}
+     \caption{Synthetic Opioids Reports in 5 states in 2014}\label{S14}
+  \end{minipage}%\hfill
+  \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2015SYN.png}
+     \caption{Synthetic Opioids Reports in 5 states in 2015}\label{S15}
+  \end{minipage}
+\end{figure}
 
-% \begin{figure}[H]
-%   \begin{minipage}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2016.png}
-%      \caption{2016 Heroin}\label{H16}
-%   \end{minipage}%\hfill
-%   \begin{minipage}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2017.png}
-%      \caption{2017 Heroin}\label{H17}
-%   \end{minipage}
-% \end{figure}
+\begin{figure}[H]
+  \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2016.png}
+     \caption{Heroin Reports in 5 states in 2016}\label{H16}
+  \end{minipage}%\hfill
+  \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2017.png}
+     \caption{Heroin Reports in 5 states in 2017}\label{H17}
+  \end{minipage}
+\end{figure}
 
-% \begin{figure}[H]
-%   \begin{minipage}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2016SYN.png}
-%      \caption{2016 Synthetic}\label{S16}
-%   \end{minipage}%\hfill
-%   \begin{minipage}{0.5\textwidth}
-%      \centering
-%      \includegraphics[width=\linewidth]{2017SYN.png}
-%      \caption{2017 Synthetic}\label{S17}
-%   \end{minipage}
-% \end{figure}
+\begin{figure}[H]
+  \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2016SYN.png}
+     \caption{Synthetic Opioids Reports in 5 states in 2016}\label{S16}
+  \end{minipage}%\hfill
+  \begin{minipage}{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{2017SYN.png}
+     \caption{Synthetic Opioids Reports in 5 states in 2017}\label{S17}
+  \end{minipage}
+\end{figure}
 
 %----------------------------------------------------------------
 %---------------------END ADD IT BACK-----------------------------
 %----------------------------------------------------------------
 
-\subsection{Cellular Automaton (CA) Model Framework}
-=======
-\begin{figure}[H]
-   \begin{minipage}{0.5\textwidth}
-     \centering
-     \includegraphics[width=\linewidth]{2016SYN.png}
-     \caption{Synthetic Opioid Reports in 5 states in 2014 2016}\label{S16}
-   \end{minipage}%\hfill
-   \begin{minipage}{0.5\textwidth}
-     \centering
-     \includegraphics[width=\linewidth]{2017SYN.png}
-     \caption{Synthetic Opioid Reports in 5 states in 2014 2017}\label{S17}
-   \end{minipage}
-\end{figure}
+ \subsection{Cellular Automaton (CA) Model Framework}
+% \begin{figure}[H]
+%   \begin{minipage}{0.5\textwidth}
+%      \centering
+%      \includegraphics[width=\linewidth]{2016SYN.png}
+%      \caption{Synthetic Opioid Reports in 5 states in 2014 2016}\label{S16}
+%   \end{minipage}%\hfill
+%   \begin{minipage}{0.5\textwidth}
+%      \centering
+%      \includegraphics[width=\linewidth]{2017SYN.png}
+%      \caption{Synthetic Opioid Reports in 5 states in 2014 2017}\label{S17}
+%   \end{minipage}
+% \end{figure}
 
 %In this model, we assume a constant size of population with recruitment and non-illicit-related death rate at time $t$ given by $\mu$. We separated the total population into several groups, including susceptible individuals, light and heavy drug users, people with mentally illness because of drugs, and detected illicit drug users.
 
@@ -337,33 +319,42 @@ For the purpose of our model, we decide to use a 2-D cellular automaton system. 
 A cellular automaton (referred as CA in the following text) is characterized by the following five properties:
 \begin{enumerate}
 \item the number of spatial dimensions ($n$);
-\item the width of each dimension ($w$), $w_j$ is the width of the $j$th dimension where $j = 1,2,...,n$;
-\item the width of the neighborhood of each cell $(d)$. $d_j$ is the width of the neighborhood of the $j$th dimension;
+\item the width of each dimension ($w$), $w_k$ is the width of the $k$th dimension where $k = 1,2,...,n$;
+\item the width of the neighborhood of each cell $(d)$. $d_k$ is the width of the neighborhood of the $k$th dimension;
 \item the local status of each of the CA cells;
 \item the CA rule, which is an arbitrary function called $F$.
 \end{enumerate}
 Notice that the change of state of a specific cell from time $t$ to $t+1$ is computed according to $F$. $F$ is a function of the state of itself as well as all the neighborhood cells at time $t$. 
-
+~\\
+\subsubsection{CA Formation for this problem}
 Our CA model is a 2 dimensional grid where the width of the two sides are taken to be equal, namely $w_1 = w_2$. Each cell in the grid represents a county according to the geographic information on map such that the location and neighborhood information is well-preserved in this grid. Although not accurate and non-realistic, for this specific problem, we are restricting the inter-county communication only to the neighborhood counties, that is, a county can only be influenced by its 8 neighbors, namely on the top, left, right, bottom, top left, top right, bottom left and bottom right. We will discuss the impact of global communication in later sections.
-
-At the initial time, where the time $t$ is at 2017, we assign a initial state to each of the cell in the grid according to a specific local rule. This rule is defined as following:
-
+\\
+At the initial time, we assign a initial state to each of the cell in the grid according to a specific local rule. This rule is defined as following:
+~\\
 The state $C_{i,j}^t$ of the $(i,j)$ CA cell at time $t$ is
 \begin{equation}
    C^t_{i,j} = \{S_{i,j}^t,\text{ INF}^t_{i,j}\},
    \label{state}
 \end{equation}
-where $\text{INF}^t_{i,j}$ is a `infectious flag' with only binary values 0 and 1. The value of the flag indicates whether there are drug reports from this state at time $t$ or not. If $\text{INF}^t_{i,j} = 1$, then the $(i,j)$ cell is a drug infected county.[2]
-
+where\\
+$\text{INF}^t_{i,j}$ is a ``infectious flag'' with only binary values 0 and 1,\\
+$S_{i,j}^t$ is the number of the certain opioid reports during year $t$.\\
+\subsubsection{CA Rule}
+The value of the flag indicates whether there are drug reports from this state at time $t$ or not. If $\text{INF}^t_{i,j} = 1$, then the $(i,j)$ cell is a drug infected county.[2]
+~\\
 The transition of the state of each cell each time step is done according to the following function:
 \begin{align}
 \begin{split}
     S_{i,j}^{t+1} &= (1 + (\rho \cdot [S_{i,j}^t > \kappa]))\cdot S_{i,j}^t \\
     &+ k\cdot (S_{i-1,j}^t + S_{i,j-1}^t + S_{i,j+1}^t + S^t_{i+1,j})\\
-    &+ l \cdot (S_{i-1,j-1}^t + S_{i+1,j-1}^t + S_{i-1,j+1}^t + S^t_{i+1,j+1}).
+    &+ l \cdot (S_{i-1,j-1}^t + S_{i+1,j-1}^t + S_{i-1,j+1}^t + S^t_{i+1,j+1})
 \end{split}
 \label{CArule}
 \end{align}
+where\\
+$\kappa$ is the threshold value for the annual number of the certain opioid reports within a county,\\
+$[S_{i,j}^t > \kappa] \in \{0,1\}$. If $S_{i,j}^t > \kappa$ is true, $[S_{i,j}^t > \kappa]=1$. If it is fale, $[S_{i,j}^t > \kappa]=0$.\\
+$\rho$ is the self-increasing rate of a county if the drug community in that county is larger than 
 The state of the cell $(i,j)$ at time $t+1$ depends on both within the county and the state of all the 8 neighbors around it as shown in Figure \ref{grids}. 
 
 \begin{figure}[H]
@@ -375,9 +366,55 @@ The state of the cell $(i,j)$ at time $t+1$ depends on both within the county an
 
 But the neighborhood influence is at a different rate since they have different boarder lengths. The effect of the adjacent neighbors, namely, $(i-1,j), (i+1,j), (i,j-1), (i,j+1)$ is multiplied by $k$ and the effect of the diagonal adjacent neighbors is multiplied by $l$. Notice that the cells with common sides have more connection with $(i,j)$, while the other four cells which are on the corners would have less connections and thus have less influence on the central one. Therefore, it is always the case that $k > l$.
 
-On the other hand, there are influence within each county, too. Apart from the influence from the neighbors, the size of drug users would increase within the county itself if no severe regulation is posted. Therefore, $\rho$ is the self increasing rate of a county if the drug community in that county is larger than some threshold $\kappa$. 
+On the other hand, there are influence within each county, too. Apart from the influence from the neighbors, the size of drug users would increase within the county itself if no severe regulation is posted. Therefore, $\rho$ is the self increasing rate of a county if the drug community in that county is larger than some threshold value $\kappa$. 
+\subsubsection{Possible Problems on this model}
+Notice that this model was based on the assumption that no drug users could actually recover from their addiction and little restriction was pushed upon. Therefore, the number of reports within our model will always be increasing instead of decreasing since we do not have the mechanism of control the number of drug users.
 
 \subsection{CA on Data}
+Based on the model described above, we applied it to the real data we are given. In order to successfully apply this model, we first partitioned the map of the 5 states into grids where each cell has roughly the same size as the counties on the map we generated. According to the cell each county lands on, we can assign a cell to it. In this case, we can express each county as a cell and perform the CA algorithm on the county easily. An example of our partition is figure \ref{partition}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = .9\textwidth, height = 10.5cm]{gredEg2.png}
+    \caption{Sample partitioning for the state of West Virginia}
+    \label{partition}
+\end{figure}
+
+One thing we had to take care was the inaccuracy of this assignment. There are a lot of incidents where we have more than 1 county land in the same cell or we have counties that lands across several cells. One effort we made to improve this situation was to personally observe the relationship of these stacking positions and try to assign them the best cells such that they still well-preserve the geographic properties and the relative location of these counties.
+
+Now we have our 2-D array of cells ready for the model to run.
+
+\subsubsection{Model Initialization}
+Before the simulation of the model, we have to initialize the cell states such that we have a initial condition for the model to run. To achieve this, we filtered the data both using Python and Excel and found the number of heroin and synthetic opioid reports separately. %Could delete this%
+Then we filled in these values into the cell of each county and got the initial state of the model. 
+
+The next thing we did was to find the correct unknown coefficients in equation \ref{CArule}, namely $\rho, \kappa, k$ and $l$, such that we can use it to actually predict the patterns after the year 2017. Although we didn't manage to come up with a method to actually find these values by regression or machine learning, we still got pretty satisfactory results by trying reasonable values by hand.
+
+First we decided that roughly 
+\begin{equation}
+    \kappa = 20
+\end{equation}
+ since an annual report under 20 might not be significant enough to form a mature drug community which could grow by a certain rate annually. Also from the raw data we found out that almost all counties with drug reports under 20 in year 2010 did not evolve into larger drug community in year 2017. 
+
+We then tried to find out a reasonable range for $\rho$, which is the internal increasing rate of a large enough county which has more reports than the $\kappa = 20$. In order to get a reasonable number for $\rho$, we wrote a small program in Python to find out the average annual increasing rate for all counties within the 7 years. For all counties with more than 20 heroin and synthetic opioids reports or with a 7-year difference greater than 20, we compute
+\begin{equation}
+ \left(\frac{r2017}{r2010}\right)^{\frac{1}{7}}  
+\end{equation}
+and take the average. Here, $r2017$ is the number of reports in 2017 while $r2010$ is the number of reports in 2010. This method might not be accurate enough but it is just providing us with a rough range of the actual value $\rho$. In turned out that the average we computed was $1.038$, it follows that we roughly got the value 
+\begin{equation}
+    \rho = 1.038-1 = 0.038.
+\end{equation}
+
+In order to find the value for $k$ and $l$, we tried several different values and then compared it with the 2017 map to see how well they behaved.
+
+It turns out that, the model yields the best fit with the actual data in year 2017 when
+\newpage
+\begin{align}
+  k &= \frac{1}{\max (R(s))}  \\
+  l &= 0.7 \cdot k
+\end{align}
+  
+where $R(s)$ is the set of the number of county drug reports in a certain state $s$. That is, when $k$ is the reciprocal of the maximum report number is a certain state, the model performs the best. 
 
 
 %%%%%%%%%------------------------
@@ -388,8 +425,27 @@ On the other hand, there are influence within each county, too. Apart from the i
 %--------------------------------------
 %---------------------------------------
 
-\newpage % delete this code
-\section{}
+
+\section{CA Model with socio-economic data}
+There are various hypothesis trying to explain how the opioid-use get to such a high level. Many scholars promote the effect of family support. For instance, United Nations Office on Drugs and Crime(UNODC) states that family dynamics is one of the most important factor on whether kids from these families would fall into drug addiction. According to UNODC, household stability, income and employment may boost the stress of the family and push familiy members to look for "solutions", which is possibly using drugs.[?]\\ %%%%%fill the reference number
+In this part, we examine the U.S. Census socio-economic data provided to check which factors in the list has a relative substantial influence on the current opioid-use level. Then we improve the model,i.e. Equation (1), from previous part by implementing the factors into the function for more precise outputs. On the one hand, we gain a better model that operates more closely to real-life progress. On the other hand, we get to realize how some ordinary socio-economic situation around us might lead to such a social security crisis.\\
+\subsection{Obtain the Influential Factor}
+U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data in each county in accordance with the number of heroine reports in that county to see if the critical points of the selected socio-economic data mostly meets that of the number of heroine reports on the graph. \\
+The following graphs showing the data that meets the condition to be our influential factor in the case of Heroine reports.\\
+*******\\
+%--------------Put graph here----------------
+We use the similar methods to obtain the influential factors in the case of synthetic opioid reports.\\
+*******\\
+%---------------Put graph here----------------
+By combining the results from these two cases, we get the following influential factors \\ % factor 1, factor 2, factor 3,...
+*******\\
+
+\subsection{Refined the Model}
+In the previous section, we find the important factors from the U.S. Census socio-economic data that tightly associate with the current opioid-use level. By implementing these factors into Equation \ref{state}, we gain a more precise function of CA modeling.
+\begin{equation}
+   D^t_{i,j} = \{S_{i,j}^t,\text{ INF}^t_{i,j},*,*,*,*\},
+   \label{new}
+\end{equation}
 
 \newpage
 \section{Strengths and Weaknesses}
