@@ -452,6 +452,13 @@ We have made $\kappa = 20$ since when going backwards, there are a lot of counti
 There are various hypothesis trying to explain how the opioid-use get to such a high level. Many scholars promote the effect of family support. For instance, United Nations Office on Drugs and Crime(UNODC) states that family dynamics is one of the most important factor on whether kids from these families would fall into drug addiction. According to UNODC, household stability, income and employment may boost the stress of the family and push familiy members to look for "solutions", which is possibly using drugs.[?]\\ %%%%%fill the reference number
 In this part, we examine the U.S. Census socio-economic data provided to check which factors in the list has a relative substantial influence on the current opioid-use level. Then we improve the model,i.e. Equation \ref{state}, from previous part by implementing the factors into the function for more precise outputs. On the one hand, we gain a better model that operates more closely to real-life progress. On the other hand, we get to realize how some ordinary socio-economic situation around us might lead to such a social security crisis.\\
 \subsection{Obtain the Influential Factor}
+
+U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data of each county in accordance with the total number of drug reports in that county to see if the peak points of the total number of drug reports meet some critical points in the graph of socio-economic data. \\
+We simply choose four significant high peak points in the graph of total drug reports county as our representative points to test the factors, the counties of which are Philadelphia in PA, Allegheny in PA, Montgomery in OH, and Hamilton in OH. We color-coded each points that Philadelphia is in red, Allegheny is in yellow, Montgomery is in green, and Hamilton is in brown. The corresponding points in the three socio-economic graphs are colored the same color in regard with the location.\\
+The following graphs showing the data that meets the condition to be our three influential factor,responsibility of grandparents taking care of grandchildren, education degree, and marriage experience.\\
+%--------------Put responsible grandparents graph here----------------
+From the graph we can tell that, among the three influential factors, the responsibility of grandparents takes a important role in reducing the rate of using drugs. In comparison to the graph of that factor, the other two factors, "never married" and "high school degree" are mild but still shows their importance in the graph.\\
+
 U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data in each county in accordance with the number of heroine reports in that county to see if the critical points of the selected socio-economic data mostly meets that of the number of heroine reports on the graph. \\
 The following graphs showing the data that meets the condition to be our influential factor in the case of Heroine reports.\\
 *******\\
@@ -462,6 +469,7 @@ We use the similar methods to obtain the influential factors in the case of synt
 By combining the results from these two cases, we get the following influential factors \\ % factor 1, factor 2, factor 3,...
 *******\\
 
+
 \subsection{Refine the Model }
 In the previous section, we find the important factors from the U.S. Census socio-economic data that tightly associate with the current opioid-use level. By implementing these factors into Equation \ref{state}, we gain a more precise function of CA modeling.
 \begin{equation}
@@ -469,6 +477,9 @@ In the previous section, we find the important factors from the U.S. Census soci
    \label{new}
 \end{equation}
 
+
+%since we notice that with lower percentage of responsible grandparents in a certain county, the total drug report in that county is higher than the mean value of drug report in that state. Similarly, with the lower percentage of people who have at least high school degrees, the drug report in that county is also higher than the mean value of drug reports in that state, and with the lower percentage of bachelors in a county, 
+\newpage
 \section{Modelling Results and Description}
 
 According to our model running on each of the 5 states, we have predicted the trend and the spread of the drugs within each state.
@@ -520,7 +531,7 @@ One factor we thought that could affect the drug communication is the transporta
 \section{Strengths and Weaknesses}
 \subsection{Strengths}
 \begin{itemize}
-    \item 
+    \item As we use CA algorithm to calculate the number of drug reports in the past and to predict the contingent number of drug reports in the future, the CA algorithm is 
 \end{itemize}
 
 \subsection{Weaknesses}
