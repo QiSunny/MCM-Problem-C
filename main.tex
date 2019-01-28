@@ -422,6 +422,22 @@ It turns out that, the model yields the best fit with the actual data in year 20
   
 where $R(s)$ is the set of the number of county drug reports in a certain state $s$. That is, when $k$ is the reciprocal of the maximum report number is a certain state, the model performs the best. 
 
+\subsubsection{Modified Model Looking for the Starting Position}
+In order to trace backwards for the starting point for each state, we modified our model such that all impacted are switched to negative. That is, all neighbors are negatively impacting the middle cell and the middle cell is also decreasing at a certain rate.
+
+Specifically, we use basically the same model function $F$ but with different coefficients. We have chosen
+\begin{equation}
+\begin{split}
+\rho_{back} &= \frac{1}{1.038} - 1 = -0.037\\
+k_{back} &= -k\\
+l_{back} &= -l\\
+\kappa_{back} &= 20
+\end{split}
+\label{backwards}
+\end{equation}
+We have made $\kappa = 20$ since when going backwards, there are a lot of counties starting from a very low number, namely, lower than 20. If the threshold is too large, the model would have no meaning. The other coefficients are just the reciprocal of themselves. In this case, we can trace back for the first appearance within each state.
+
+
 %%%%%%%%%------------------------
 %--------------------------------------
 %-----------------------------------
@@ -452,6 +468,40 @@ In the previous section, we find the important factors from the U.S. Census soci
    \label{new}
 \end{equation}
 
+\section{Modelling Results and Description}
+
+According to our model running on each of the 5 states, we have predicted the trend and the spread of the drugs within each state.
+\subsection{Part 1: Solution Analysis Based on the Inspection of the First Data Set}
+
+Our first model was based on the data provided by the file MCM\_NFLIS\_Data.xlsx. Following is some example of the result yield by our model:
+\subsubsection{Spread and Characteristic}
+The main characteristic of the spread we observed from the result is that the development is mostly centered at 
+
+Notice that for each state, the development of the local drug community is largely dependent on the larger drug counties. As the time evolves, the number of drug reports within that sate would increase at a certain rate and it would also influence the counties around it. 
+
+
+
+\subsubsection{Possible Starting Region}
+By using Equation \ref{backwards}, we can get the possible starting point of each type of drug in each sate. Following are some example of the result yield by our model.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{OHS02.png}
+    \caption{Possible Synthetic Opioid Spread in Ohio in Year 2002}
+    \label{WVH02}
+\end{figure}
+
+\subsubsection{Drawback}
+There are some possible flaws of our model since we are doing this without extra data. There are drastic changes in drug uses, especially in 2014, the uses of Heroin and Synthetic Opioid increase in a extremely high rate such that our model is not able to predict this drastic change. 
+
+Also there are some drastic decreases with no obvious reason. For example, the Monongalia county at West Virginia experienced a quick decline on drug usage but we cannot find any pattern underline that unusual change. Thus we assume this might due to sudden law enforcement. However, since this is only a special case, we did not add this feature to our model otherwise it would affect the result of other counties that do not own this characteristic.
+\subsection{Part2: Solution Analysis based on the Socio-Economic Data Set}
+
+
+\subsubsection{Drawback}
+One factor we thought that could affect the drug communication is the transportation system and the regulation force within and between the counties. However, we are not able to get these information from the data provided. 
+
+
+\subsection{Part 3: Analysis of Strategy Used}
 \newpage
 \section{Strengths and Weaknesses}
 \subsection{Strengths}
@@ -469,17 +519,7 @@ In the previous section, we find the important factors from the U.S. Census soci
 
 
 % - - - - - - - - - - - Model Solution - - - - - - - - -
-\section{Modelling Results and Description}
 
-According to our model running on each of the 5 states, we have predicted the trend and the spread of the drugs within each state.
-\subsection{Part1: Solution Analysis Based on the Inspection of the First Data Set}
-
-Our first model was based on the data provided by the file MCM\_NFLIS\_Data.xlsx. Following is the final spread of drugs yield by our model:
-
-
-
-\subsubsection{Drawback}
-There are some possible drawbacks of our model. There are drastic changes in drug uses, especially in 2014, the uses of Heroin and Synthetic Opioid increases in a extremely high rate such that we
 % labels allow you to cross-reference a section later in the document, without having to remember its number
 %  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % Delete existing text when writing your own report.
