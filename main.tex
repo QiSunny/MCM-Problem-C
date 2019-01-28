@@ -204,17 +204,18 @@ $r_t$ & the number of reports in the year of $t$
 %  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % Delete existing text when writing your own report.
 
+\newpage
 \section{Spread and Characteristics of Synthetic Opioids and Herion Incidents}
 
 In this section, we are going to build a CA model to describe and predict the trends of the drug usage in the five states we are focusing on: Ohio, Kentucky, West Virginia, Virginia, and Pennsylvania. First we categorize the list of narcotic analgesic by synthetic, semi-synthetic, and non-synthetic opioids. Then the list of synthetic opioids contains all drugs other than Buprenorphine, Codeine, Heroin, Hydrocodone, Hydromorphone, Hydorcodeinone, Morphine, Opiate, Opium, Oxycodone, Oxymorphone, and Thebaine.
-
+~\\
 For heroin and synthetic opioids, we make heat maps for the number of drug reports within the five states from 2010 to 2017 respectively.  Using these graphs, we can easily visualize the trends of drug usage and trace its development along the timeline. Then, referring to Sirakoulis et al's work, we construct the corresponding CA model, which can be successfully tested by the given data in eight years. By using this model, we are able to predict the future trend-in-use and, in a reversed direction, locate the starting points of specific opioids in each of five states.  
 
  
 \subsection{Geographical Visualization of Drug Reports}
 In the following graphs, we use different shades of blue colors and orange colors to represent the number of heroin and synthetic opioid reports from the year of 2014 to 2017. The blue colors represent the number of annual Heroin reports in each county and the orange colors represent that of synthetic opioids.  The deeper the color of the county is, the more reports that county had in that year.
 Since the numbers of annual reports about Herion increase at roughly the same rate as year passes during 2010-2013, we only show the distribution of annual reports geographically during 2014-2017, where significant and noteworthy changes occurred. The situation is similar to that of synthetic opioids, so we would also do the same thing to them.
-
+~\\
  As told by the data, the number of annual Heroine reports experienced a mild growth every year. On the other hand, the amount of synthetic opioids reports  experienced a dramatically growth from year 2014 to year 2017, especially in Ohio.  As a result, the pictures we showed are chosen specifically for these changes.
 
 %----------------------------------------------------------------
@@ -330,7 +331,7 @@ Notice that the change of state of a specific cell from time $t$ to $t+1$ is com
 ~\\
 \subsubsection{CA Formation for this problem}
 Our CA model is a 2 dimensional grid where the width of the two sides are taken to be equal, namely $w_1 = w_2$. Each cell in the grid represents a county according to the geographic information on map such that the location and neighborhood information is well-preserved in this grid. Although not accurate and non-realistic, for this specific problem, we are restricting the inter-county communication only to the neighborhood counties, that is, a county can only be influenced by its 8 neighbors, namely on the top, left, right, bottom, top left, top right, bottom left and bottom right. We will discuss the impact of global communication in later sections.
-
+~\\
 At the initial time, we assign a initial state to each of the cell in the grid according to a specific local rule. This rule is defined as following:
 ~\\
 The state $C_{i,j}^t$ of the $(i,j)$ CA cell at time $t$ is
@@ -362,9 +363,9 @@ $l$ is the coefficient that represents the effect of the diagonal neighbors of t
 
 \subsection{Neighborhood Influence}
 The state of the cell $(i,j)$ at time $t+1$ depends on both within the county and the state of all the 8 neighbors around it as shown in Figure \ref{grids}. 
-
+~\\
 But the neighborhood influence is at a different rate since they have different boarder lengths. The effect of the adjacent neighbors, namely, $(i-1,j), (i+1,j), (i,j-1), (i,j+1)$ is multiplied by $k$ and the effect of the diagonal adjacent neighbors is multiplied by $l$. Notice that the cells with common sides have more connection with $(i,j)$, while the other four cells which are on the corners would have less connections and thus have less influence on the central one. Therefore, it is always the case that $k > l$.
-
+~\\
 On the other hand, there are influence within each county, too. Apart from the influence from the neighbors, the size of drug users would increase within the county itself if no severe regulation is posted. Therefore, $\rho$ is the self increasing rate of a county if the drug community in that county is larger than some threshold value $\kappa$. 
 \begin{figure}[H]
     \centering
@@ -387,23 +388,23 @@ Based on the model described above, we applied it to the real data we are given.
     \caption{Sample partitioning for the state of West Virginia}
     \label{partition}
 \end{figure}
-
+~\\
 One thing we had to take care was the inaccuracy of this assignment. There are a lot of incidents where we have more than 1 county land in the same cell or we have counties that lands across several cells. One effort we made to improve this situation was to personally observe the relationship of these stacking positions and try to assign them the best cells such that they still well-preserve the geographic properties and the relative location of these counties.
-
+~\\
 Now we have our 2-D array of cells ready for the model to run.
 
 \subsubsection{Model Initialization}
 Before the simulation of the model, we have to initialize the cell states such that we have a initial condition for the model to run. To achieve this, we filtered the data both using Python and Excel and found the number of heroin and synthetic opioid reports separately. %Could delete this%
 Then we filled in these values into the cell of each county and got the initial state of the model. 
-
+~\\
 The next thing we did was to find the correct unknown coefficients in equation \ref{CArule}, namely $\rho, \kappa, k$ and $l$, such that we can use it to actually predict the patterns after the year 2017. Although we didn't manage to come up with a method to actually find these values by regression or machine learning, we still got pretty satisfactory results by trying reasonable values by hand.
-
+~\\
 First we decided that roughly 
 \begin{equation}
     \kappa = 20
 \end{equation}
  since an annual report under 20 might not be significant enough to form a mature drug community which could grow by a certain rate annually. Also from the raw data we found out that almost all counties with drug reports under 20 in year 2010 did not evolve into larger drug community in year 2017. 
-
+~\\
 We then tried to find out a reasonable range for $\rho$, which is the internal increasing rate of a large enough county which has more reports than the $\kappa = 20$. In order to get a reasonable number for $\rho$, we wrote a small program in Python to find out the average annual increasing rate for all counties within the 7 years. For all counties with more than 20 heroin and synthetic opioids reports or with a 7-year difference greater than 20, we compute
 \begin{equation}
  \left(\frac{r_{2017}}{r_{2010}}\right)^{\frac{1}{7}}  
@@ -412,20 +413,20 @@ and take the average. Here, $r_{2017}$ is the number of reports in 2017 while $r
 \begin{equation}
     \rho = 1.038-1 = 0.038.
 \end{equation}
-
+~\\
 In order to find the value for $k$ and $l$, we tried several different values and then compared it with the 2017 map to see how well they behaved.
-
+~\\
 It turns out that, the model yields the best fit with the actual data in year 2017 when
 \begin{align}
   k &= \frac{1}{\max (R(s))}  \\
   l &= 0.7 \cdot k
 \end{align}
-  
+~\\
 where $R(s)$ is the set of the number of county drug reports in a certain state $s$. That is, when $k$ is the reciprocal of the maximum report number is a certain state, the model performs the best. 
 
 \subsubsection{Modified Model Looking for the Starting Position}
 In order to trace backwards for the starting point for each state, we modified our model such that all impacted are switched to negative. That is, all neighbors are negatively impacting the middle cell and the middle cell is also decreasing at a certain rate.
-
+~\\
 Specifically, we use basically the same model function $F$ but with different coefficients. We have chosen
 \begin{equation}
 \begin{split}
@@ -436,6 +437,7 @@ l_{back} &= -l\\
 \end{split}
 \label{backwards}
 \end{equation}
+~\\
 We have made $\kappa = 20$ since when going backwards, there are a lot of counties starting from a very low number, namely, lower than 20. If the threshold is too large, the model would have no meaning. The other coefficients are just the reciprocal of themselves. In this case, we can trace back for the first appearance within each state.
 
 
@@ -447,28 +449,32 @@ We have made $\kappa = 20$ since when going backwards, there are a lot of counti
 %--------------------------------------
 %---------------------------------------
 
-
+\newpage
 \section{CA Model with socio-economic data}
 There are various hypothesis trying to explain how the opioid-use get to such a high level. Many scholars promote the effect of family support. For instance, United Nations Office on Drugs and Crime(UNODC) states that family dynamics is one of the most important factor on whether kids from these families would fall into drug addiction. According to UNODC, household stability, income and employment may boost the stress of the family and push familiy members to look for "solutions", which is possibly using drugs.[?]\\ %%%%%fill the reference number
 In this part, we examine the U.S. Census socio-economic data provided to check which factors in the list has a relative substantial influence on the current opioid-use level. Then we improve the model,i.e. Equation \ref{state}, from previous part by implementing the factors into the function for more precise outputs. On the one hand, we gain a better model that operates more closely to real-life progress. On the other hand, we get to realize how some ordinary socio-economic situation around us might lead to such a social security crisis.\\
 \subsection{Obtain the Influential Factor}
-U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data in each county in accordance with the number of heroine reports in that county to see if the critical points of the selected socio-economic data mostly meets that of the number of heroine reports on the graph. \\
-The following graphs showing the data that meets the condition to be our influential factor in the case of Heroine reports.\\
-*******\\
-%--------------Put graph here----------------
-We use the similar methods to obtain the influential factors in the case of synthetic opioid reports.\\
-*******\\
-%---------------Put graph here----------------
-By combining the results from these two cases, we get the following influential factors \\ % factor 1, factor 2, factor 3,...
-*******\\
+U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data of each county in accordance with the total number of drug reports in that county to see if the peak points of the total number of drug reports meet some critical points in the graph of socio-economic data. \\
+We simply choose four significant high peak points in the graph of total drug reports county as our representative points to test the factors, the counties of which are Philadelphia in PA, Allegheny in PA, Montgomery in OH, and Hamilton in OH. We color-coded each points that Philadelphia is in red, Allegheny is in yellow, Montgomery is in green, and Hamilton is in brown. The corresponding points in the three socio-economic graphs are colored the same color in regard with the location.\\
+The following graphs showing the data that meets the condition to be our three influential factor,responsibility of grandparents taking care of grandchildren, education degree, and marriage experience.\\
+%--------------Put responsible grandparents graph here----------------
+From the graph we can tell that, among the three influential factors, the responsibility of grandparents takes a important role in reducing the rate of using drugs. In comparison to the graph of that factor, thethe other two factors, "never married" and "high school degree" 
 
 \subsection{Refine the Model }
-In the previous section, we find the important factors from the U.S. Census socio-economic data that tightly associate with the current opioid-use level. By implementing these factors into Equation \ref{state}, we gain a more precise function of CA modeling.
+In the previous section, we find the important factors from the U.S. Census socio-economic data that tightly associate with the current opioid-use level. By implementing these factors into Equation \ref{state}, we gain a more precise function of CA modeling:
 \begin{equation}
-   D^t_{i,j} = \{S_{i,j}^t,\text{ INF}^t_{i,j},*,*,*,*\},
+   D^t_{i,j} = \{S_{i,j}^t,\text{ INF}^t_{i,j}, g, d, m\},
    \label{new}
 \end{equation}
+~\\
+where\\
+$g$ is the percentage of people in the county that do not have responsible grandparents, \\
+$d$ is the percentage of people in the county that have education level lower than high school, \\
+$m$ is the percentage of people in the county that are not married, \\
+and in this case we take $g = 5, d = 1.5$ and $m = 1$. \\
 
+since we notice that with lower percentage of responsible grandparents in a certain county, the total drug report in that county is higher than the mean value of drug report in that state. Similarly, with the lower percentage of people who have at least high school degrees, the drug report in that county is also higher than the mean value of drug reports in that state, and with the lower percentage of bachelors in a county, 
+\newpage
 \section{Modelling Results and Description}
 
 According to our model running on each of the 5 states, we have predicted the trend and the spread of the drugs within each state.
@@ -491,7 +497,7 @@ The following are examples of the result we had from the model:
 \end{figure}
 
 The main characteristic of the spread we observed from the result is that the development is mostly centered at 
-
+~\\
 Notice that for each state, the development of the local drug community is largely dependent on the larger drug counties. As the time evolves, the number of drug reports within that sate would increase at a certain rate and it would also influence the counties around it. 
 
 
@@ -513,7 +519,7 @@ By using Equation \ref{backwards}, we can get the possible starting point of eac
 \end{figure}
 \subsubsection{Drawback}
 There are some possible flaws of our model since we are doing this without extra data. There are drastic changes in drug uses, especially in 2014, the uses of Heroin and Synthetic Opioid increase in a extremely high rate such that our model is not able to predict this drastic change. 
-
+~\\
 Also there are some drastic decreases with no obvious reason. For example, the Monongalia county at West Virginia experienced a quick decline on drug usage but we cannot find any pattern underline that unusual change. Thus we assume this might due to sudden law enforcement. However, since this is only a special case, we did not add this feature to our model otherwise it would affect the result of other counties that do not own this characteristic.
 \subsection{Part2: Solution Analysis based on the Socio-Economic Data Set}
 
