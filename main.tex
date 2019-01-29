@@ -464,7 +464,7 @@ The following graphs showing the data that meets the condition to be our three i
     \label{factors}
 \end{figure}
 
-From the graph we can tell that, among the three influential factors, the responsibility of grandparents takes a important role in reducing the rate of using drugs. In comparison to the graph of that factor, the other two factors, "never married" and "high school degree" are mild but still shows their importance in the graph.\\
+From figure \ref{factors} we can tell that, among the three influential factors, the responsibility of grandparents takes a important role in reducing the rate of using drugs. In comparison to the graph of that factor, the other two factors, "never married" and "high school degree" are mild but still shows their importance in the graph.\\
 
 U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data in each county in accordance with the number of heroine reports in that county to see if the critical points of the selected socio-economic data mostly meets that of the number of heroine reports on the graph. \\
 The following graphs showing the data that meets the condition to be our influential factor in the case of Heroine reports.\\
@@ -501,9 +501,11 @@ The following an example of the State of Ohio of the result we had from the mode
     \caption{Possible Spread of Heroin in Ohio in Year 2027. The 0's on the edges are only for the convenience of the code, there is no actual meaning to them.}
     \label{OHH27}
 \end{figure}
-Notice that for each state, the development of the local drug community is largely dependent on the larger drug counties. As the time evolves, the number of drug reports within that sate would increase at a certain rate and it would also influence the counties around it. 
+Notice that for each state, the development of the local drug community is largely dependent on the larger drug counties, or similarly, more urbanized counties. As the time evolves, the number of drug reports within that sate would increase at a certain rate and it would also influence the counties around it. 
 
 One thing we believe that the US government has to worry about is that there might be appearance of drug users in nearly all of the counties, even if the counties where no drug is reported. In the future, these counties would eventually have more than 20 reports and start to develop its own drug community within itself.
+
+With the threshold level we set at 20, where the drug community would grow intrinsically within the county, our model predicted that roughly after 18 years, all counties might entered the status of rapid growth.
 
 Therefore, we think the most important task for the U.S. government, despite the law enforcement on the drug heavy areas, they should do more on the area that are not originally drug infected instead.
 
@@ -523,9 +525,23 @@ By using Equation \ref{backwards}, we can get the possible starting point of eac
     \label{WVH02}
 \end{figure}
 
-By looking at those largest points in the resulting matrix, we assume that those points could represent the counties where the drugs initially started. For example in Figure \ref{OHS02}, the larger numbers are 85, 94 on the bottom left and 36 on the top right. Therefore, we conclude that the Synthetic Opioid spread might first start from those regions where in map represents Hamilton, Montgomery and Cuyahoga. From the second chart, we found that the possible starting point for Heroin in West Virginia could be Kanawha.
+By looking at those largest points in the resulting matrix, we assume that those points could represent the counties where the drugs initially started. For example in Figure \ref{OHS02} for the Synthetic Opioids in Ohio, the larger numbers are 85, 94 on the bottom left and 36 on the top right. Therefore, we conclude that the Synthetic Opioid spread might first start from those regions where in map represents Hamilton, Montgomery and Cuyahoga. From the second chart, we found that the possible starting point for Heroin in West Virginia could be Kanawha.
 
-
+By similar reasoning, we get the table below for possible starting points for two different drugs:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|}
+    \hline
+       State  & PA & OH & KY & VA & WV \\
+       \hline
+       Heroin &Philadelphia &Montgomery & Jefferson & Richmond & Kanawha \\
+       \hline
+       Synthetic Opioid& Philadelphia &Hamilton &Jefferson& Richmond & Pulaski\\
+       \hline
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
 
 \subsubsection{Drawback}
 There are some possible flaws of our model since we are doing this without extra data. There are drastic changes in drug uses, especially in 2014, the uses of Heroin and Synthetic Opioid increase in a extremely high rate such that our model is not able to predict this drastic change. 
@@ -551,6 +567,8 @@ By Part 1, we concluded that it is important on the control of spread of drugs i
 \begin{itemize}
     \item As we convert the actual map data to Cellular Automaton, we neglect counties with small reports number and relatively very small areas. Since both areas and numbers of reports are fairly small, neglecting them is less likely to cause serious errors on our output.\\
     However, since we fit each county into small grids, each of which has eight neighbors, the distance factor and neighbor information might  deviates the modelling output from the actual data. This chiefly happens when the area of the county is small in comparison to most of its neighbors. 
+    
+    \item Our model would be better if we are given the population data for each county therefore we can compute percentage of drug users instead of just the pure number. 
 \end{itemize}
 % - - - - - - - - - - - END Model Design - - - - - - - - - - -
 
