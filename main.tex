@@ -467,22 +467,21 @@ The following graphs showing the data that meets the condition to be our three i
 From figure \ref{factors} we can tell that, among the three influential factors, the responsibility of grandparents takes a important role in reducing the rate of using drugs. In comparison to the graph of that factor, the other two factors, "never married" and "high school degree" are mild but still shows their importance in the graph.\\
 
 U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data in each county in accordance with the number of heroine reports in that county to see if the critical points of the selected socio-economic data mostly meets that of the number of heroine reports on the graph. \\
-The following graphs showing the data that meets the condition to be our influential factor in the case of Heroine reports.\\
-*******\\
-%--------------Put graph here----------------
-We use the similar methods to obtain the influential factors in the case of synthetic opioid reports.\\
-*******\\
-%---------------Put graph here----------------
-By combining the results from these two cases, we get the following influential factors \\ % factor 1, factor 2, factor 3,...
-*******\\
+
 
 
 \subsection{Refine the Model }
 In the previous section, we find the important factors from the U.S. Census socio-economic data that tightly associate with the current opioid-use level. By implementing these factors into Equation \ref{state}, we gain a more precise function of CA modeling.
 \begin{equation}
-   D^t_{i,j} = \{S_{i,j}^t,\text{ INF}^t_{i,j},*,*,*,*\},
+   D^t_{i,j} = \{S_{i,j}^t,\text{ INF}^t_{i,j}, g, d, m\},
    \label{new}
 \end{equation}
+~\\
+where\\
+$g$ is the percentage of people in the county that do not have responsible grandparents, \\
+$d$ is the percentage of people in the county that have education level lower than high school, \\
+$m$ is the percentage of people in the county that are not married, \\
+and in this case we take $g = 5, d = 1.5$ and $m = 1$. \\
 
 
 %since we notice that with lower percentage of responsible grandparents in a certain county, the total drug report in that county is higher than the mean value of drug report in that state. Similarly, with the lower percentage of people who have at least high school degrees, the drug report in that county is also higher than the mean value of drug reports in that state, and with the lower percentage of bachelors in a county, 
@@ -494,7 +493,7 @@ According to our model running on each of the 5 states, we have predicted the tr
 
 Our first model was based on the data provided by the file MCM\_NFLIS\_Data.xlsx. Following is some example of the result yield by our model:
 \subsubsection{Spread and Characteristic}
-The following an example of the State of Ohio of the result we had from the model:
+The following is an example of the State of Ohio of the result we had from the model:
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{OHH27.png}
@@ -555,7 +554,7 @@ One factor we thought that could affect the drug communication is the transporta
 
 
 \subsection{Part 3: Analysis of Strategy Used}
-By Part 1, we concluded that it is important on the control of spread of drugs into the counties
+In order to control the outrageous rate of increment of drug reports and drug taken by people every year, we think it is important to control the use of fentanyl, as well as to protect the counties with no or little drug users. As we mentioned above, with the amount of heroin taken by drug user every year does not change very much, it is important to control the use of synthetic opioids like fentanyl and its related drugs. More importantly, it worth more concern to protect the counties with no or little drug users. As we analyzed the data, we found that many counties that did not have drug report or just had little, but had other counties with higher drug reports surrounded them, would have a rise in the drug report in the next year. Some counties like Harrison, West Virginia, had only 35 reported heroin use in year 2010, but the number rose to 265 in year 2016. Part of the reason for the rapid growth may be that counties above Harrison, Merion and Montogomery, had much higher numbers of heroin uses reported in these years.
 \newpage
 \section{Strengths and Weaknesses}
 \subsection{Strengths}
@@ -585,7 +584,7 @@ The case for drug reports of heroin is somewhat different from the case of synth
 More than the above points mentioned, from the year 2015, the number of synthetic opioids used in the five states rose dramatically: in the year 2014, the largest number of drug reports was 388, while in next year, the largest number became 1592, and in year 2017, the largest number became 5425. During our analysis of the data, we found out that the sudden growth of synthetic opioids was because the birth of fentanyl and its related drugs. In year 2010, according to the data provided, there was no report of use of fentanyl, but in year 2015, when the number of synthetic opioids grew suddenly, fentanyl appeared, and the amount of fentanyl being used in the following years was increasing annually. 
 ~\\
 
-In order to control the outrageous rate of increment of drug reports and drug taken by people every year, we think it is important to control the use of fentanyl, as well as to protect the couties with no or little drug users. As we mentioned above, with the amount of heroin taken by drug taker every year does not change much every year, it is important to control the use of synthetic opioids like fentanyl and its related drugs. More importantly, it worth more concern to protect the couties with no or little drug users. As we analyzed the data, we found that many counties that did not have drug report or just had little, but had other counties with higher drug reports surrounded them, would have a rise in the drug report in the next year. Some counties like Harrison, West Virginia, had only 35 reported heroin use in year 2010, but the number rose to 265 in year 2016. Part of the reason for the rapid growth may be that counties above Harrison, Merion and Montogomery, had much higher numbers of heroin uses reported in these years. \\
+In order to control the outrageous rate of increment of drug reports and drug taken by people every year, we think it is important to control the use of fentanyl, as well as to protect the counties with no or little drug users. As we mentioned above, with the amount of heroin taken by drug taker every year does not change much every year, it is important to control the use of synthetic opioids like fentanyl and its related drugs. More importantly, it worth more concern to protect the counties with no or little drug users. As we analyzed the data, we found that many counties that did not have drug report or just had little, but had other counties with higher drug reports surrounded them, would have a rise in the drug report in the next year. Some counties like Harrison, West Virginia, had only 35 reported heroin use in year 2010, but the number rose to 265 in year 2016. Part of the reason for the rapid growth may be that counties above Harrison, Merion and Montogomery, had much higher numbers of heroin uses reported in these years. \\
 
 Therefore, in order to control the annual growth of drug use in the United States, it is urgent to control the use of fentanyl, and to limit or prohibit the drug circulation among states with high number of drug reports every year and states with seldom drug reports every year. After solving these two major concerns, we believe that the life in the United States may be much better. \\
 
