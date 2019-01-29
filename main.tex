@@ -456,7 +456,14 @@ In this part, we examine the U.S. Census socio-economic data provided to check w
 U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data of each county in accordance with the total number of drug reports in that county to see if the peak points of the total number of drug reports meet some critical points in the graph of socio-economic data. \\
 We simply choose four significant high peak points in the graph of total drug reports county as our representative points to test the factors, the counties of which are Philadelphia in PA, Allegheny in PA, Montgomery in OH, and Hamilton in OH. We color-coded each points that Philadelphia is in red, Allegheny is in yellow, Montgomery is in green, and Hamilton is in brown. The corresponding points in the three socio-economic graphs are colored the same color in regard with the location.\\
 The following graphs showing the data that meets the condition to be our three influential factor,responsibility of grandparents taking care of grandchildren, education degree, and marriage experience.\\
-%--------------Put responsible grandparents graph here----------------
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth, height = 10.5cm]{factor.jpeg}
+    \caption{Caption}
+    \label{factors}
+\end{figure}
+
 From the graph we can tell that, among the three influential factors, the responsibility of grandparents takes a important role in reducing the rate of using drugs. In comparison to the graph of that factor, the other two factors, "never married" and "high school degree" are mild but still shows their importance in the graph.\\
 
 U.S. Census socio-economic data provides a detailed table about different household status such as marital status, fertility, as well as grandparents raising children or not. We examine by plotting the data in each county in accordance with the number of heroine reports in that county to see if the critical points of the selected socio-economic data mostly meets that of the number of heroine reports on the graph. \\
@@ -498,7 +505,7 @@ Notice that for each state, the development of the local drug community is large
 
 One thing we believe that the US government has to worry about is that there might be appearance of drug users in nearly all of the counties, even if the counties where no drug is reported. In the future, these counties would eventually have more than 20 reports and start to develop its own drug community within itself.
 
-Therefore, we think the most important 
+Therefore, we think the most important task for the U.S. government, despite the law enforcement on the drug heavy areas, they should do more on the area that are not originally drug infected instead.
 
 \subsubsection{Possible Starting Region}
 By using Equation \ref{backwards}, we can get the possible starting point of each type of drug in each sate. Following are some examples of the result yield by our model. 
@@ -515,6 +522,11 @@ By using Equation \ref{backwards}, we can get the possible starting point of eac
     \caption{Possible Heroin Spread in West Virginia in Year 2002}
     \label{WVH02}
 \end{figure}
+
+By looking at those largest points in the resulting matrix, we assume that those points could represent the counties where the drugs initially started. For example in Figure \ref{OHS02}, the larger numbers are 85, 94 on the bottom left and 36 on the top right. Therefore, we conclude that the Synthetic Opioid spread might first start from those regions where in map represents Hamilton, Montgomery and Cuyahoga. From the second chart, we found that the possible starting point for Heroin in West Virginia could be Kanawha.
+
+
+
 \subsubsection{Drawback}
 There are some possible flaws of our model since we are doing this without extra data. There are drastic changes in drug uses, especially in 2014, the uses of Heroin and Synthetic Opioid increase in a extremely high rate such that our model is not able to predict this drastic change. 
 
@@ -527,6 +539,7 @@ One factor we thought that could affect the drug communication is the transporta
 
 
 \subsection{Part 3: Analysis of Strategy Used}
+By Part 1, we concluded that it is important on the control of spread of drugs into the counties
 \newpage
 \section{Strengths and Weaknesses}
 \subsection{Strengths}
