@@ -483,6 +483,12 @@ $d$ is the percentage of people in the county that have education level lower th
 $m$ is the percentage of people in the county that are not married, \\
 and in this case we take $g = 5, d = 1.5$ and $m = 1$. \\
 
+\subsection{Possible Actions}
+From our model, we found out that the control of $k$ and $l$ is very important. As $k$ and $l$ decreases, the spread of the drug will slow down drastically. Therefore, we have to find effective ways to control the value of $k$ and $l$. Since $k$ and $l$ represents the influence of the neighborhood counties, we think it is important to control the transportation of drugs between areas. One strategy we could use is to post security check on main roads or gas stations on roads to cut off the drug flow and so further decrease the values of $k$ and $l$. 
+
+Other factor that influence the variation of the number of reports is the internal increasing rate $\rho$. This factor represents the growth of drug population results from factors other than the influence of other areas. We can decrease this factor by invest on good drug treatment, as well as take good care of susceptible people who have access to the drug but have not started yet.
+
+By taking these actions, the main reason of the increase of the drug population would be very well-controlled and so the spread could slow down consequently.
 
 %since we notice that with lower percentage of responsible grandparents in a certain county, the total drug report in that county is higher than the mean value of drug report in that state. Similarly, with the lower percentage of people who have at least high school degrees, the drug report in that county is also higher than the mean value of drug reports in that state, and with the lower percentage of bachelors in a county, 
 \newpage
@@ -546,12 +552,6 @@ By similar reasoning, we get the table below for possible starting points for tw
 There are some possible flaws of our model since we are doing this without extra data. There are drastic changes in drug uses, especially in 2014, the uses of Heroin and Synthetic Opioid increase in a extremely high rate such that our model is not able to predict this drastic change. 
 
 Also there are some drastic decreases with no obvious reason. For example, the Monongalia county at West Virginia experienced a quick decline on drug usage but we cannot find any pattern underline that unusual change. Thus we assume this might due to sudden law enforcement. However, since this is only a special case, we did not add this feature to our model otherwise it would affect the result of other counties that do not own this characteristic.
-\subsection{Part2: Solution Analysis based on the Socio-Economic Data Set}
-
-
-\subsubsection{Drawback}
-One factor we thought that could affect the drug communication is the transportation system and the regulation force within and between the counties. However, we are not able to get these information from the data provided. 
-
 
 \subsection{Part 3: Analysis of Strategy Used}
 In order to control the outrageous rate of increment of drug reports and drug taken by people every year, we think it is important to control the use of fentanyl, as well as to protect the counties with no or little drug users. As we mentioned above, with the amount of heroin taken by drug user every year does not change very much, it is important to control the use of synthetic opioids like fentanyl and its related drugs. More importantly, it worth more concern to protect the counties with no or little drug users. As we analyzed the data, we found that many counties that did not have drug report or just had little, but had other counties with higher drug reports surrounded them, would have a rise in the drug report in the next year. Some counties like Harrison, West Virginia, had only 35 reported heroin use in year 2010, but the number rose to 265 in year 2016. Part of the reason for the rapid growth may be that counties above Harrison, Merion and Montogomery, had much higher numbers of heroin uses reported in these years.
